@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your account dashboard - Manage orders, addresses, and account settings.">
+    <title>My Account - ShopHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .dashboard-page {
+            padding: var(--spacing-8) 0;
+            min-height: 70vh;
+        }
+
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: var(--spacing-8);
+        }
+
+        .dashboard-sidebar {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-6);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .user-info {
+            text-align: center;
+            padding-bottom: var(--spacing-6);
+            border-bottom: 1px solid var(--color-gray-200);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--color-accent), #ff8c5a);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-3);
+            font-size: var(--font-size-2xl);
+            font-weight: 700;
+            color: var(--color-white);
+        }
+
+        .user-info h3 {
+            margin-bottom: var(--spacing-1);
+        }
+
+        .user-info p {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-500);
+        }
+
+        .dashboard-nav {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-1);
+        }
+
+        .dashboard-nav a {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-3);
+            padding: var(--spacing-3) var(--spacing-4);
+            border-radius: var(--radius-md);
+            color: var(--color-gray-600);
+            font-weight: 500;
+            transition: all var(--transition-fast);
+        }
+
+        .dashboard-nav a:hover {
+            background: var(--color-gray-50);
+            color: var(--color-primary);
+        }
+
+        .dashboard-nav a.active {
+            background: var(--color-accent);
+            color: var(--color-white);
+        }
+
+        .dashboard-nav a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        .dashboard-nav a.logout {
+            color: var(--color-danger);
+            margin-top: var(--spacing-4);
+            border-top: 1px solid var(--color-gray-200);
+            padding-top: var(--spacing-4);
+        }
+
+        .dashboard-nav a.logout:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+
+        .dashboard-content {
+            min-width: 0;
+        }
+
+        .dashboard-section {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-6);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-6);
+            padding-bottom: var(--spacing-4);
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        .section-header h2 {
+            font-size: var(--font-size-xl);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-4);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .stat-card {
+            background: var(--color-gray-50);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-4);
+            text-align: center;
+        }
+
+        .stat-card i {
+            font-size: var(--font-size-2xl);
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .stat-card h4 {
+            font-size: var(--font-size-2xl);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .stat-card p {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-500);
+        }
+
+        .orders-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .orders-table th,
+        .orders-table td {
+            padding: var(--spacing-4);
+            text-align: left;
+            border-bottom: 1px solid var(--color-gray-100);
+        }
+
+        .orders-table th {
+            font-weight: 600;
+            color: var(--color-gray-600);
+            font-size: var(--font-size-sm);
+            background: var(--color-gray-50);
+        }
+
+        .order-id {
+            font-weight: 600;
+            color: var(--color-accent);
+        }
+
+        .order-status {
+            display: inline-block;
+            padding: var(--spacing-1) var(--spacing-3);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+        }
+
+        .order-status.processing {
+            background: #FEF3C7;
+            color: #D97706;
+        }
+
+        .order-status.shipped {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+
+        .order-status.delivered {
+            background: #D1FAE5;
+            color: #059669;
+        }
+
+        .order-status.cancelled {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .view-order-btn {
+            padding: var(--spacing-2) var(--spacing-3);
+            background: var(--color-gray-100);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-sm);
+            transition: all var(--transition-fast);
+        }
+
+        .view-order-btn:hover {
+            background: var(--color-primary);
+            color: var(--color-white);
+        }
+
+        .address-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-4);
+        }
+
+        .address-card {
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-4);
+            position: relative;
+        }
+
+        .address-card.default {
+            border-color: var(--color-accent);
+        }
+
+        .address-card .badge {
+            position: absolute;
+            top: var(--spacing-2);
+            right: var(--spacing-2);
+            background: var(--color-accent);
+            color: white;
+            padding: var(--spacing-1) var(--spacing-2);
+            border-radius: var(--radius-full);
+            font-size: var(--font-size-xs);
+        }
+
+        .address-card h4 {
+            margin-bottom: var(--spacing-2);
+        }
+
+        .address-card p {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+            line-height: 1.6;
+            margin-bottom: var(--spacing-3);
+        }
+
+        .address-actions {
+            display: flex;
+            gap: var(--spacing-2);
+        }
+
+        .address-actions button {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-500);
+        }
+
+        .address-actions button:hover {
+            color: var(--color-accent);
+        }
+
+        .add-address-card {
+            border: 2px dashed var(--color-gray-300);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 150px;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .add-address-card:hover {
+            border-color: var(--color-accent);
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .add-address-card i {
+            font-size: var(--font-size-2xl);
+            color: var(--color-gray-400);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .add-address-card span {
+            color: var(--color-gray-500);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-4);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-4);
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: var(--spacing-2);
+            font-size: var(--font-size-sm);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: var(--spacing-3);
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+        }
+
+        .form-group input:focus {
+            border-color: var(--color-accent);
+            outline: none;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-4);
+        }
+
+        @media (max-width: 1024px) {
+            .dashboard-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-sidebar {
+                position: static;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .wishlist-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .address-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .orders-table {
+                font-size: var(--font-size-sm);
+            }
+
+            .orders-table th,
+            .orders-table td {
+                padding: var(--spacing-2);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span>Hub</span></a>
+            <div class="search-bar">
+                <select>
+                    <option value="">All Categories</option>
+                </select>
+                <input type="text" placeholder="Search for products...">
+                <button type="button"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-actions">
+                <a href="dashboard.html" class="header-action"><i class="fas fa-user"></i></a>
+                <a href="#wishlist" class="header-action"><i class="fas fa-heart"></i><span class="badge wishlist-badge"
+                        style="display:none;">0</span></a>
+                <a href="cart.html" class="header-action"><i class="fas fa-shopping-bag"></i><span
+                        class="badge cart-badge" style="display:none;">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dashboard Page -->
+    <main class="dashboard-page">
+        <div class="container">
+            <div class="dashboard-layout">
+                <!-- Sidebar -->
+                <aside class="dashboard-sidebar">
+                    <div class="user-info">
+                        <div class="user-avatar">JD</div>
+                        <h3>John Doe</h3>
+                        <p>john.doe@email.com</p>
+                    </div>
+                    <nav class="dashboard-nav">
+                        <a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="#orders"><i class="fas fa-shopping-bag"></i> Orders</a>
+                        <a href="#addresses"><i class="fas fa-map-marker-alt"></i> Addresses</a>
+                        <a href="#account"><i class="fas fa-user-cog"></i> Account Details</a>
+                        <a href="#wishlist"><i class="fas fa-heart"></i> Wishlist</a>
+                        <a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                    </nav>
+                </aside>
+
+                <!-- Content -->
+                <div class="dashboard-content">
+                    <!-- Dashboard Overview -->
+                    <section class="dashboard-section" id="dashboard">
+                        <div class="section-header">
+                            <h2>Dashboard Overview</h2>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card">
+                                <i class="fas fa-shopping-bag"></i>
+                                <h4>12</h4>
+                                <p>Total Orders</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-truck"></i>
+                                <h4>2</h4>
+                                <p>Pending</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-heart"></i>
+                                <h4>8</h4>
+                                <p>Wishlist Items</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-star"></i>
+                                <h4>5</h4>
+                                <p>Reviews Given</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Recent Orders -->
+                    <section class="dashboard-section" id="orders">
+                        <div class="section-header">
+                            <h2>Recent Orders</h2>
+                            <a href="#" class="btn btn-outline btn-sm">View All</a>
+                        </div>
+                        <div style="overflow-x: auto;">
+                            <table class="orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Total</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><span class="order-id">#SH-78542</span></td>
+                                        <td>Dec 10, 2024</td>
+                                        <td><span class="order-status processing">Processing</span></td>
+                                        <td>$427.17</td>
+                                        <td><button class="view-order-btn">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="order-id">#SH-78123</span></td>
+                                        <td>Dec 5, 2024</td>
+                                        <td><span class="order-status shipped">Shipped</span></td>
+                                        <td>$189.99</td>
+                                        <td><button class="view-order-btn">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="order-id">#SH-77845</span></td>
+                                        <td>Nov 28, 2024</td>
+                                        <td><span class="order-status delivered">Delivered</span></td>
+                                        <td>$89.99</td>
+                                        <td><button class="view-order-btn">View</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><span class="order-id">#SH-77512</span></td>
+                                        <td>Nov 15, 2024</td>
+                                        <td><span class="order-status delivered">Delivered</span></td>
+                                        <td>$299.99</td>
+                                        <td><button class="view-order-btn">View</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+
+                    <!-- Addresses -->
+                    <section class="dashboard-section" id="addresses">
+                        <div class="section-header">
+                            <h2>Saved Addresses</h2>
+                        </div>
+                        <div class="address-grid">
+                            <div class="address-card default">
+                                <span class="badge">Default</span>
+                                <h4>Home</h4>
+                                <p>John Doe<br>123 Main Street, Apt 4B<br>New York, NY 10001<br>United States<br>+1
+                                    (555) 123-4567</p>
+                                <div class="address-actions">
+                                    <button><i class="fas fa-edit"></i> Edit</button>
+                                    <button><i class="fas fa-trash"></i> Delete</button>
+                                </div>
+                            </div>
+                            <div class="address-card">
+                                <h4>Office</h4>
+                                <p>John Doe<br>456 Business Ave, Suite 200<br>New York, NY 10002<br>United States<br>+1
+                                    (555) 987-6543</p>
+                                <div class="address-actions">
+                                    <button><i class="fas fa-edit"></i> Edit</button>
+                                    <button><i class="fas fa-trash"></i> Delete</button>
+                                </div>
+                            </div>
+                            <div class="address-card add-address-card">
+                                <i class="fas fa-plus"></i>
+                                <span>Add New Address</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Account Details -->
+                    <section class="dashboard-section" id="account">
+                        <div class="section-header">
+                            <h2>Account Details</h2>
+                        </div>
+                        <form class="form-grid" data-validate>
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" value="John" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" value="Doe" required>
+                            </div>
+                            <div class="form-group full">
+                                <label>Email Address</label>
+                                <input type="email" value="john.doe@email.com" required>
+                            </div>
+                            <div class="form-group full">
+                                <label>Phone Number</label>
+                                <input type="tel" value="+1 (555) 123-4567">
+                            </div>
+                            <div class="form-group full">
+                                <label>Current Password (leave blank to keep)</label>
+                                <input type="password" placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label>New Password</label>
+                                <input type="password" placeholder="••••••••">
+                            </div>
+                            <div class="form-group">
+                                <label>Confirm New Password</label>
+                                <input type="password" placeholder="••••••••">
+                            </div>
+                            <div class="form-group full">
+                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <!-- Wishlist -->
+                    <section class="dashboard-section" id="wishlist">
+                        <div class="section-header">
+                            <h2>My Wishlist</h2>
+                        </div>
+                        <div class="wishlist-grid">
+                            <div class="product-card" data-id="wish-1">
+                                <div class="product-card-image">
+                                    <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400"
+                                        alt="Headphones">
+                                    <div class="product-actions">
+                                        <button class="product-action-btn wishlist-btn active"><i
+                                                class="fas fa-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-card-content">
+                                    <span class="product-category">Electronics</span>
+                                    <h3 class="product-title"><a href="product.html">Premium Wireless Headphones</a>
+                                    </h3>
+                                    <div class="product-price"><span class="current">$89.99</span></div>
+                                    <button class="product-add-cart" style="opacity:1;transform:none;"><i
+                                            class="fas fa-shopping-cart"></i> Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-card" data-id="wish-2">
+                                <div class="product-card-image">
+                                    <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"
+                                        alt="Watch">
+                                    <div class="product-actions">
+                                        <button class="product-action-btn wishlist-btn active"><i
+                                                class="fas fa-heart"></i></button>
+                                    </div>
+                                </div>
+                                <div class="product-card-content">
+                                    <span class="product-category">Electronics</span>
+                                    <h3 class="product-title"><a href="product.html">Smart Watch Pro</a></h3>
+                                    <div class="product-price"><span class="current">$299.99</span></div>
+                                    <button class="product-add-cart" style="opacity:1;transform:none;"><i
+                                            class="fas fa-shopping-cart"></i> Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom" style="border-top: none;">
+                <p>&copy; 2024 ShopHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

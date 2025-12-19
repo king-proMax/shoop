@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about ShopHub - Your trusted online shopping destination since 2020.">
+    <title>About Us - ShopHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .about-page {
+            padding: var(--spacing-8) 0;
+        }
+
+        .page-hero {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            color: white;
+            padding: var(--spacing-16) 0;
+            text-align: center;
+            margin-bottom: var(--spacing-12);
+        }
+
+        .page-hero h1 {
+            color: white;
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .page-hero p {
+            font-size: var(--font-size-lg);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-section {
+            margin-bottom: var(--spacing-16);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-12);
+            align-items: center;
+        }
+
+        .about-grid.reverse {
+            direction: rtl;
+        }
+
+        .about-grid.reverse>* {
+            direction: ltr;
+        }
+
+        .about-content h2 {
+            margin-bottom: var(--spacing-4);
+        }
+
+        .about-content p {
+            color: var(--color-gray-600);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .about-image {
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--spacing-6);
+        }
+
+        .value-card {
+            text-align: center;
+            padding: var(--spacing-8);
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+        }
+
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .value-card i {
+            font-size: var(--font-size-4xl);
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .value-card h3 {
+            margin-bottom: var(--spacing-2);
+        }
+
+        .value-card p {
+            color: var(--color-gray-600);
+            font-size: var(--font-size-sm);
+        }
+
+        .team-section {
+            background: var(--color-gray-50);
+            padding: var(--spacing-16) 0;
+        }
+
+        .team-section h2 {
+            text-align: center;
+            margin-bottom: var(--spacing-12);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-6);
+        }
+
+        .team-member {
+            text-align: center;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .team-member img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .team-member-info {
+            padding: var(--spacing-4);
+        }
+
+        .team-member-info h4 {
+            margin-bottom: var(--spacing-1);
+        }
+
+        .team-member-info p {
+            color: var(--color-accent);
+            font-size: var(--font-size-sm);
+            margin-bottom: var(--spacing-3);
+        }
+
+        .team-social {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-2);
+        }
+
+        .team-social a {
+            width: 32px;
+            height: 32px;
+            background: var(--color-gray-100);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gray-600);
+            transition: all var(--transition-fast);
+        }
+
+        .team-social a:hover {
+            background: var(--color-accent);
+            color: white;
+        }
+
+        .stats-section {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--spacing-12) 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--spacing-6);
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: var(--font-size-4xl);
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .stat-item p {
+            font-size: var(--font-size-sm);
+            opacity: 0.8;
+        }
+
+        @media (max-width: 1024px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid.reverse {
+                direction: ltr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span>Hub</span></a>
+            <div class="search-bar">
+                <select>
+                    <option value="">All Categories</option>
+                </select>
+                <input type="text" placeholder="Search...">
+                <button type="button"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-actions">
+                <a href="dashboard.html" class="header-action"><i class="fas fa-user"></i></a>
+                <a href="cart.html" class="header-action"><i class="fas fa-shopping-bag"></i><span
+                        class="badge cart-badge" style="display:none;">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1>About ShopHub</h1>
+            <p>Your trusted online shopping destination, delivering quality products and exceptional service since 2020.
+            </p>
+        </div>
+    </section>
+
+    <main class="about-page">
+        <!-- Our Story -->
+        <section class="about-section">
+            <div class="container">
+                <div class="about-grid">
+                    <div class="about-content">
+                        <h2>Our Story</h2>
+                        <p>ShopHub was founded with a simple mission: to make quality products accessible to everyone.
+                            What started as a small online store has grown into a comprehensive marketplace serving
+                            millions of customers worldwide.</p>
+                        <p>We believe that shopping should be easy, enjoyable, and affordable. That's why we've built a
+                            platform that connects you with the best products from trusted brands and sellers around the
+                            globe.</p>
+                        <a href="shop.html" class="btn btn-primary">Start Shopping</a>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=600" alt="Our warehouse">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Values -->
+        <section class="about-section" style="background: var(--color-gray-50); padding: var(--spacing-16) 0;">
+            <div class="container">
+                <h2 style="text-align: center; margin-bottom: var(--spacing-12);">Our Values</h2>
+                <div class="values-grid">
+                    <div class="value-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Customer First</h3>
+                        <p>Every decision we make starts with our customers. Your satisfaction is our top priority.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-gem"></i>
+                        <h3>Quality Products</h3>
+                        <p>We carefully curate our selection to ensure you only get the best quality products.</p>
+                    </div>
+                    <div class="value-card">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Trust & Transparency</h3>
+                        <p>We build trust through honest communication and transparent business practices.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats -->
+        <section class="stats-section">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3>5M+</h3>
+                        <p>Happy Customers</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>100K+</h3>
+                        <p>Products Available</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Countries Served</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>24/7</h3>
+                        <p>Customer Support</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Team Section -->
+        <section class="team-section">
+            <div class="container">
+                <h2>Meet Our Team</h2>
+                <div class="team-grid">
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=300" alt="CEO">
+                        <div class="team-member-info">
+                            <h4>Michael Johnson</h4>
+                            <p>CEO & Founder</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300" alt="CTO">
+                        <div class="team-member-info">
+                            <h4>Sarah Williams</h4>
+                            <p>Chief Technology Officer</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300" alt="COO">
+                        <div class="team-member-info">
+                            <h4>David Chen</h4>
+                            <p>Chief Operations Officer</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="team-member">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=300" alt="CMO">
+                        <div class="team-member-info">
+                            <h4>Emily Rodriguez</h4>
+                            <p>Chief Marketing Officer</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span>Hub</span></a>
+                    <p>Your one-stop destination for premium products.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="contact.html">Help Center</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Newsletter</h4>
+                    <form class="newsletter-form"><input type="email"
+                            placeholder="Your email"><button>Subscribe</button></form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ShopHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

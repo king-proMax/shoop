@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your shopping cart - Review your items and proceed to checkout.">
+    <title>Shopping Cart - ShopHub</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .cart-page {
+            padding: var(--spacing-8) 0;
+            min-height: 60vh;
+        }
+
+        .cart-title {
+            margin-bottom: var(--spacing-8);
+        }
+
+        .cart-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: var(--spacing-8);
+            align-items: start;
+        }
+
+        .cart-items {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+        }
+
+        .cart-header {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: var(--spacing-4);
+            padding: var(--spacing-4) var(--spacing-6);
+            background: var(--color-gray-50);
+            font-weight: 600;
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-600);
+        }
+
+        .cart-item {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr auto;
+            gap: var(--spacing-4);
+            padding: var(--spacing-6);
+            border-bottom: 1px solid var(--color-gray-100);
+            align-items: center;
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+        .cart-item-info {
+            display: flex;
+            gap: var(--spacing-4);
+            align-items: center;
+        }
+
+        .cart-item-image {
+            width: 100px;
+            height: 100px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            background: var(--color-gray-100);
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details h4 {
+            font-size: var(--font-size-base);
+            margin-bottom: var(--spacing-1);
+        }
+
+        .cart-item-details h4 a:hover {
+            color: var(--color-accent);
+        }
+
+        .cart-item-variant {
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-500);
+        }
+
+        .cart-item-price {
+            font-weight: 600;
+            color: var(--color-primary);
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+            width: fit-content;
+        }
+
+        .cart-item-quantity button {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gray-600);
+            transition: all var(--transition-fast);
+        }
+
+        .cart-item-quantity button:hover {
+            background: var(--color-gray-100);
+        }
+
+        .cart-item-quantity span {
+            width: 40px;
+            text-align: center;
+            font-weight: 600;
+            border-left: 1px solid var(--color-gray-200);
+            border-right: 1px solid var(--color-gray-200);
+            padding: var(--spacing-2) 0;
+        }
+
+        .cart-item-subtotal {
+            font-weight: 700;
+            font-size: var(--font-size-lg);
+            color: var(--color-primary);
+        }
+
+        .cart-item-remove {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-gray-400);
+            border-radius: 50%;
+            transition: all var(--transition-fast);
+        }
+
+        .cart-item-remove:hover {
+            background: var(--color-danger);
+            color: var(--color-white);
+        }
+
+        .cart-empty {
+            text-align: center;
+            padding: var(--spacing-16);
+        }
+
+        .cart-empty i {
+            font-size: 4rem;
+            color: var(--color-gray-300);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .cart-empty h3 {
+            margin-bottom: var(--spacing-2);
+        }
+
+        .cart-empty p {
+            color: var(--color-gray-500);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .cart-summary {
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: var(--spacing-6);
+            position: sticky;
+            top: 100px;
+        }
+
+        .cart-summary h3 {
+            margin-bottom: var(--spacing-6);
+            padding-bottom: var(--spacing-4);
+            border-bottom: 1px solid var(--color-gray-200);
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-3);
+            font-size: var(--font-size-base);
+        }
+
+        .summary-row.total {
+            margin-top: var(--spacing-4);
+            padding-top: var(--spacing-4);
+            border-top: 2px solid var(--color-gray-200);
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+        }
+
+        .summary-row.total span:last-child {
+            color: var(--color-accent);
+        }
+
+        .coupon-form {
+            display: flex;
+            gap: var(--spacing-2);
+            margin: var(--spacing-6) 0;
+        }
+
+        .coupon-form input {
+            flex: 1;
+            padding: var(--spacing-3);
+            border: 1px solid var(--color-gray-200);
+            border-radius: var(--radius-md);
+        }
+
+        .coupon-form button {
+            padding: var(--spacing-3) var(--spacing-4);
+            background: var(--color-gray-100);
+            border-radius: var(--radius-md);
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+
+        .coupon-form button:hover {
+            background: var(--color-gray-200);
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: var(--spacing-4);
+            background: var(--color-accent);
+            color: var(--color-white);
+            border-radius: var(--radius-md);
+            font-size: var(--font-size-base);
+            font-weight: 700;
+            transition: all var(--transition-fast);
+        }
+
+        .checkout-btn:hover {
+            background: var(--color-accent-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .continue-shopping {
+            display: block;
+            text-align: center;
+            margin-top: var(--spacing-4);
+            color: var(--color-gray-600);
+        }
+
+        .continue-shopping:hover {
+            color: var(--color-accent);
+        }
+
+        .secure-checkout {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-2);
+            margin-top: var(--spacing-4);
+            font-size: var(--font-size-sm);
+            color: var(--color-gray-500);
+        }
+
+        .secure-checkout i {
+            color: var(--color-success);
+        }
+
+        @media (max-width: 1024px) {
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-summary {
+                position: static;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .cart-header {
+                display: none;
+            }
+
+            .cart-item {
+                grid-template-columns: 1fr;
+                gap: var(--spacing-3);
+            }
+
+            .cart-item-info {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .cart-item-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .cart-item-price,
+            .cart-item-subtotal {
+                text-align: center;
+            }
+
+            .cart-item-quantity {
+                margin: 0 auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-promo"><i class="fas fa-truck"></i><span data-i18n="topBar.freeShipping">Free Shipping
+                    on orders over $50!</span></div>
+            <div class="top-bar-actions">
+                <select id="language-select" aria-label="Language">
+                    <option value="en">English</option>
+                    <option value="ar">العربية</option>
+                </select>
+                <select id="currency-select" aria-label="Currency">
+                    <option value="USD">USD $</option>
+                    <option value="SAR">SAR ر.س</option>
+                    <option value="YER">YER ر.ي</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="index.html" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span>Hub</span></a>
+            <div class="search-bar">
+                <select>
+                    <option value="">All Categories</option>
+                </select>
+                <input type="text" placeholder="Search for products...">
+                <button type="button"><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-actions">
+                <a href="dashboard.html" class="header-action"><i class="fas fa-user"></i></a>
+                <a href="dashboard.html#wishlist" class="header-action"><i class="fas fa-heart"></i><span
+                        class="badge wishlist-badge" style="display:none;">0</span></a>
+                <a href="cart.html" class="header-action"><i class="fas fa-shopping-bag"></i><span
+                        class="badge cart-badge" style="display:none;">0</span></a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Page -->
+    <main class="cart-page">
+        <div class="container">
+            <h1 class="cart-title" data-i18n="cart.shoppingCart">Shopping Cart</h1>
+
+            <div class="cart-layout">
+                <!-- Cart Items -->
+                <div class="cart-items-container">
+                    <div class="cart-items">
+                        <div class="cart-header">
+                            <span data-i18n="cart.product">Product</span>
+                            <span data-i18n="cart.price">Price</span>
+                            <span data-i18n="cart.quantity">Quantity</span>
+                            <span data-i18n="cart.subtotal">Subtotal</span>
+                            <span></span>
+                        </div>
+                        <!-- Items will be rendered by JS -->
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div class="cart-summary">
+                    <h3 data-i18n="cart.orderSummary">Order Summary</h3>
+
+                    <div class="summary-row">
+                        <span data-i18n="cart.subtotal">Subtotal</span>
+                        <span class="cart-subtotal-value">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span data-i18n="cart.shipping">Shipping</span>
+                        <span>$5.99</span>
+                    </div>
+                    <div class="summary-row">
+                        <span data-i18n="cart.taxEstimated">Tax (estimated)</span>
+                        <span>$0.00</span>
+                    </div>
+
+                    <form class="coupon-form">
+                        <input type="text" placeholder="Coupon code" data-i18n="cart.couponPlaceholder">
+                        <button type="submit" data-i18n="cart.apply">Apply</button>
+                    </form>
+
+                    <div class="summary-row total">
+                        <span data-i18n="cart.total">Total</span>
+                        <span class="cart-total-value">$5.99</span>
+                    </div>
+
+                    <a href="checkout.html" class="checkout-btn"><i class="fas fa-lock"></i> <span
+                            data-i18n="cart.proceedToCheckout">Proceed to Checkout</span></a>
+                    <a href="shop.html" class="continue-shopping"><i class="fas fa-arrow-left"></i> <span
+                            data-i18n="cart.continueShopping">Continue Shopping</span></a>
+
+                    <div class="secure-checkout">
+                        <i class="fas fa-shield-alt"></i>
+                        <span data-i18n="cart.secureCheckout">Secure SSL Checkout</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="index.html" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span>Hub</span></a>
+                    <p>Your one-stop destination for premium products.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="contact.html">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Newsletter</h4>
+                    <form class="newsletter-form"><input type="email" placeholder="Email"><button>Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 ShopHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/translations.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
