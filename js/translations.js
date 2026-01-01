@@ -6,6 +6,7 @@ const translations = {
     ar: {
         // Header & Navigation
         "search_placeholder": "ابحث عن المنتجات...",
+        "site_name": "شوب هب",
         "all_categories": "جميع الفئات",
         "electronics": "الإلكترونيات",
         "fashion": "الأزياء",
@@ -26,6 +27,15 @@ const translations = {
         "learn_more": "اعرف المزيد",
         "discover_future": "اكتشف مستقبل التقنية",
         "hero_desc": "استكشف أحدث مجموعة الإلكترونيات مع تقنية متطورة وأسعار لا تُقاوَم.",
+        "hero_title_2": "أزياء عصرية وأنيقة",
+        "hero_desc_2": "جدد خزانة ملابسك بأحدث صيحات الموضة لهذا الموسم بخصومات مذهلة.",
+        "explore_fashion": "اكتشف الأزياء",
+        "hero_title_3": "تخفيضات مستلزمات المنزل",
+        "hero_desc_3": "حول مساحة معيشتك مع مجموعتنا المنزلية الفاخرة. الجودة تلتقي بالتوفير.",
+        "shop_home": "تسوق للمنزل",
+        "promo_title": "مجموعة الصيف خصم حتى 70%",
+        "promo_desc": "لا تفوت أكبر تخفيضات الموسم. عرض لفترة محدودة على عناصر مختارة.",
+        "shop_sale": "تسوق العروض",
 
         // Value Props
         "fast_delivery": "توصيل سريع",
@@ -56,6 +66,13 @@ const translations = {
         "buy_now": "اشتري الآن",
         "add_to_wishlist": "أضف للمفضلة",
         "quick_view": "عرض سريع",
+        "product_headphones_title": "سماعات لاسلكية فاخرة",
+        "product_watch_title": "ساعة ذكية برو 5",
+        "product_camera_title": "كاميرا 4K احترافية",
+        "product_sneakers_title": "حذاء رياضي مريح",
+        "product_bag_title": "حقيبة جلدية أنيقة",
+        "product_glasses_title": "نظارات شمسية كلاسيكية",
+
 
         // Product Page
         "description": "الوصف",
@@ -171,7 +188,6 @@ const translations = {
         "contact_us": "اتصل بنا",
         "help_center": "مركز المساعدة",
         "returns_refunds": "الإرجاع والاسترداد",
-        "shipping_info": "معلومات الشحن",
         "payment_methods": "طرق الدفع",
         "privacy_policy": "سياسة الخصوصية",
         "terms_service": "شروط الخدمة",
@@ -182,6 +198,15 @@ const translations = {
         "customer_service": "خدمة العملاء",
         "quick_links": "روابط سريعة",
         "all_rights": "جميع الحقوق محفوظة",
+        "your_one_stop": "وجهتك الشاملة للمنتجات الفاخرة.",
+
+        // Notifications & Validation
+        "added_to_cart": "تمت الإضافة للسلة!",
+        "added_to_wishlist": "تمت الإضافة للمفضلة!",
+        "removed_from_wishlist": "تم الحذف من المفضلة!",
+        "no_results_found": "لا توجد نتائج",
+        "field_required": "هذا الحقل مطلوب",
+        "email_invalid": "يرجى إدخال بريد إلكتروني صحيح",
 
         // About Page
         "our_story": "قصتنا",
@@ -211,26 +236,30 @@ const translations = {
         "faq": "الأسئلة الشائعة",
         "search_answers": "ابحث عن إجابات...",
         "orders": "الطلبات",
-        "payments": "المدفوعات",
-        "still_questions": "لا زلت لديك أسئلة؟",
-        "contact_support": "تواصل مع الدعم",
-
-        // Shop Page
-        "filters": "الفلاتر",
-        "clear_all": "مسح الكل",
-        "categories": "الفئات",
-        "price_range": "نطاق السعر",
-        "brand": "العلامة التجارية",
-        "rating": "التقييم",
-        "sort_by": "ترتيب حسب",
-        "featured": "مميز",
-        "newest": "الأحدث",
         "price_low_high": "السعر: من الأقل للأعلى",
         "price_high_low": "السعر: من الأعلى للأقل",
         "best_rating": "الأعلى تقييماً",
         "showing_results": "عرض",
         "results": "نتيجة",
         "all_products": "جميع المنتجات",
+        "filters": "تصفية",
+        "clear_all": "مسح الكل",
+        "categories": "الفئات",
+        "price_range": "نطاق السعر",
+        "brand": "العلامة التجارية",
+        "rating": "التقييم",
+        "color": "اللون",
+        "sort_featured": "المميزة",
+        "sort_newest": "الأحدث",
+        "sort_price_low": "السعر: من الأقل للأعلى",
+        "sort_price_high": "السعر: من الأعلى للأقل",
+        "sort_rating": "الأعلى تقييماً",
+        "load_more": "تحميل المزيد",
+        "based_on": "بناءً على",
+        "star": "نجمة",
+        "stars": "نجوم",
+        "related_products": "منتجات ذات صلة",
+
 
         // Misc
         "and_up": "وأكثر",
@@ -243,6 +272,7 @@ const translations = {
     en: {
         // Header & Navigation
         "search_placeholder": "Search for products...",
+        "site_name": "ShopHub",
         "all_categories": "All Categories",
         "electronics": "Electronics",
         "fashion": "Fashion",
@@ -263,6 +293,15 @@ const translations = {
         "learn_more": "Learn More",
         "discover_future": "Discover the Future of Tech",
         "hero_desc": "Explore our latest electronics collection with cutting-edge technology and unbeatable prices.",
+        "hero_title_2": "Fashion Forward Style",
+        "hero_desc_2": "Refresh your wardrobe with the season's hottest trends at incredible discounts.",
+        "explore_fashion": "Explore Fashion",
+        "hero_title_3": "Home Essentials Sale",
+        "hero_desc_3": "Transform your living space with our premium home collection. Quality meets affordability.",
+        "shop_home": "Shop Home",
+        "promo_title": "Summer Collection Up to 70% Off",
+        "promo_desc": "Don't miss out on our biggest sale of the season. Limited time offer on selected items.",
+        "shop_sale": "Shop the Sale",
 
         // Value Props
         "fast_delivery": "Fast Delivery",
@@ -293,6 +332,13 @@ const translations = {
         "buy_now": "Buy Now",
         "add_to_wishlist": "Add to Wishlist",
         "quick_view": "Quick View",
+        "product_headphones_title": "Premium Wireless Headphones",
+        "product_watch_title": "Smart Watch Pro Series 5",
+        "product_camera_title": "Professional 4K Camera",
+        "product_sneakers_title": "Comfort Sport Sneakers",
+        "product_bag_title": "Elegant Leather Bag",
+        "product_glasses_title": "Classic Sunglasses",
+
 
         // Product Page
         "description": "Description",
@@ -419,6 +465,15 @@ const translations = {
         "customer_service": "Customer Service",
         "quick_links": "Quick Links",
         "all_rights": "All rights reserved",
+        "your_one_stop": "Your one-stop destination for premium products.",
+
+        // Notifications & Validation
+        "added_to_cart": "Added to cart!",
+        "added_to_wishlist": "Added to wishlist!",
+        "removed_from_wishlist": "Removed from wishlist!",
+        "no_results_found": "No results found",
+        "field_required": "This field is required",
+        "email_invalid": "Please enter a valid email",
 
         // About Page
         "our_story": "Our Story",
@@ -457,6 +512,40 @@ const translations = {
         "clear_all": "Clear All",
         "categories": "Categories",
         "price_range": "Price Range",
+        "brand": "Brand",
+        "rating": "Rating",
+        "color": "Color",
+        "home": "Home",
+        "all_products": "All Products",
+        "showing_results": "Showing results",
+        "sort_featured": "Featured",
+        "sort_newest": "Newest",
+        "sort_price_low": "Price: Low to High",
+        "sort_price_high": "Price: High to Low",
+        "sort_rating": "Best Rating",
+        "load_more": "Load More",
+        "based_on": "Based on",
+        "star": "Star",
+        "stars": "Stars",
+        "related_products": "Related Products",
+
+        // Cart Page
+        "shopping_cart": "Shopping Cart",
+        "product": "Product",
+        "price": "Price",
+        "quantity": "Quantity",
+        "subtotal": "Subtotal",
+        "order_summary": "Order Summary",
+        "shipping": "Shipping",
+        "tax": "Tax",
+        "coupon_code": "Coupon Code",
+        "apply": "Apply",
+        "total": "Total",
+        "proceed_checkout": "Proceed to Checkout",
+        "continue_shopping": "Continue Shopping",
+        "secure_checkout": "Secure Checkout",
+        "cart_empty": "Your cart is empty",
+        "cart_empty_desc": "Looks like you haven't added any items to the cart yet.",
         "brand": "Brand",
         "rating": "Rating",
         "sort_by": "Sort By",
@@ -507,9 +596,21 @@ const currencies = {
 let currentLang = localStorage.getItem('language') || 'ar';
 let currentCurrency = localStorage.getItem('currency') || 'YER';
 
+// Validate state
+if (!translations[currentLang]) {
+    currentLang = 'ar';
+    localStorage.setItem('language', 'ar');
+}
+
+if (!currencies[currentCurrency]) {
+    currentCurrency = 'YER';
+    localStorage.setItem('currency', 'YER');
+}
+
 // Get translation
 function t(key) {
-    return translations[currentLang]?.[key] || translations['en'][key] || key;
+    if (!key) return '';
+    return translations[currentLang]?.[key] || translations['en']?.[key] || key;
 }
 
 // Format price with currency
@@ -540,6 +641,11 @@ function setLanguage(lang) {
     // Update all translatable elements
     updatePageTranslations();
 
+    // Update cart if on cart page
+    if (typeof renderCart === 'function' && document.querySelector('.cart-items')) {
+        renderCart();
+    }
+
     // Update language selector
     const langSelect = document.getElementById('language-select');
     if (langSelect) langSelect.value = lang;
@@ -552,6 +658,11 @@ function setCurrency(currency) {
 
     // Update all prices
     updatePrices();
+
+    // Update cart if on cart page
+    if (typeof renderCart === 'function' && document.querySelector('.cart-items')) {
+        renderCart();
+    }
 
     // Update currency selector
     const currencySelect = document.getElementById('currency-select');

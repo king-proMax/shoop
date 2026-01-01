@@ -43,19 +43,41 @@ function initMobileMenu() {
   const nav = document.querySelector('.nav');
   const closeBtn = document.querySelector('.mobile-menu-close');
 
-  if (toggle && nav) {
-    toggle.addEventListener('click', () => {
+  function openMenu() {
+    if (nav) {
       nav.classList.add('active');
       document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeMenu() {
+    if (nav) {
+      nav.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  }
+
+  if (toggle) {
+    toggle.addEventListener('click', openMenu);
+  }
+
+  if (closeBtn) {
+    closeBtn.addEventListener('click', closeMenu);
+  }
+
+  // Close menu when clicking on overlay (outside nav content)
+  if (nav) {
+    nav.addEventListener('click', (e) => {
+      if (e.target === nav) {
+        closeMenu();
+      }
     });
   }
 
-  if (closeBtn && nav) {
-    closeBtn.addEventListener('click', () => {
-      nav.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-  }
+  // Close menu when clicking on nav links
+  document.querySelectorAll('.nav-list a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
 }
 
 // ============================================
@@ -171,7 +193,7 @@ function addToCart(product) {
 
   saveState();
   updateCartBadge();
-  showNotification('Added to cart!', 'success');
+  showNotification(t('added_to_cart'), 'success');
 }
 
 function removeFromCart(productId) {
@@ -206,13 +228,13 @@ function renderCart() {
     cartContainer.innerHTML = `
       <div class="cart-empty">
         <i class="fas fa-shopping-cart"></i>
-        <h3>Your cart is empty</h3>
-        <p>Looks like you haven't added anything to your cart yet.</p>
-        <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+        <h3 data-translate="cart_empty">${t('cart_empty')}</h3>
+        <p data-translate="cart_empty_desc">${t('cart_empty_desc')}</p>
+        <a href="shop.html" class="btn btn-primary" data-translate="continue_shopping">${t('continue_shopping')}</a>
       </div>
     `;
-    if (cartTotal) cartTotal.textContent = '$0.00';
-    if (cartSubtotal) cartSubtotal.textContent = '$0.00';
+    if (cartTotal) cartTotal.textContent = formatPrice(0);
+    if (cartSubtotal) cartSubtotal.textContent = formatPrice(0);
     return;
   }
 
@@ -224,14 +246,14 @@ function renderCart() {
       <div class="cart-item-details">
         <h4 class="cart-item-name">${item.name}</h4>
         <p class="cart-item-variant">${item.variant || ''}</p>
-        <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+        <p class="cart-item-price">${formatPrice(item.price)}</p>
       </div>
       <div class="cart-item-quantity">
         <button class="qty-btn minus" onclick="updateCartQuantity('${item.id}', ${item.quantity - 1})">-</button>
         <span>${item.quantity}</span>
         <button class="qty-btn plus" onclick="updateCartQuantity('${item.id}', ${item.quantity + 1})">+</button>
       </div>
-      <div class="cart-item-subtotal">$${(item.price * item.quantity).toFixed(2)}</div>
+      <div class="cart-item-subtotal">${formatPrice(item.price * item.quantity)}</div>
       <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">
         <i class="fas fa-trash"></i>
       </button>
@@ -239,8 +261,8 @@ function renderCart() {
   `).join('');
 
   const total = getCartTotal();
-  if (cartSubtotal) cartSubtotal.textContent = `$${total.toFixed(2)}`;
-  if (cartTotal) cartTotal.textContent = `$${(total + 5.99).toFixed(2)}`; // Adding shipping
+  if (cartSubtotal) cartSubtotal.textContent = formatPrice(total);
+  if (cartTotal) cartTotal.textContent = formatPrice(total + 5.99); // Adding shipping
 }
 
 // ============================================
@@ -251,10 +273,10 @@ function toggleWishlist(product) {
 
   if (index > -1) {
     state.wishlist.splice(index, 1);
-    showNotification('Removed from wishlist', 'info');
+    showNotification(t('removed_from_wishlist'), 'info');
   } else {
     state.wishlist.push(product);
-    showNotification('Added to wishlist!', 'success');
+    showNotification(t('added_to_wishlist'), 'success');
   }
 
   saveState();
@@ -345,7 +367,7 @@ function initSearchAutocomplete() {
         `).join('');
         autocomplete.classList.add('active');
       } else {
-        autocomplete.innerHTML = '<div class="search-autocomplete-item">No results found</div>';
+        autocomplete.innerHTML = `<div class="search-autocomplete-item">${t('no_results_found')}</div>`;
         autocomplete.classList.add('active');
       }
     }, 300);
@@ -520,11 +542,11 @@ function initFormValidation() {
         if (!input.value.trim()) {
           isValid = false;
           input.classList.add('error');
-          if (errorEl) errorEl.textContent = 'This field is required';
+          if (errorEl) errorEl.textContent = t('field_required');
         } else if (input.type === 'email' && !isValidEmail(input.value)) {
           isValid = false;
           input.classList.add('error');
-          if (errorEl) errorEl.textContent = 'Please enter a valid email';
+          if (errorEl) errorEl.textContent = t('email_invalid');
         } else {
           input.classList.remove('error');
           if (errorEl) errorEl.textContent = '';
@@ -594,6 +616,36 @@ function initCheckout() {
 }
 
 // ============================================
+// VIEW TOGGLE (GRID/LIST)
+// ============================================
+function initViewToggle() {
+  const viewBtns = document.querySelectorAll('.view-toggle button');
+  const productsGrid = document.querySelector('.products-grid');
+
+  if (!viewBtns.length || !productsGrid) return;
+
+  viewBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      // Remove active class from all buttons
+      viewBtns.forEach(b => b.classList.remove('active'));
+      // Add active class to clicked button
+      btn.classList.add('active');
+
+      // Check icon to determine view
+      const isList = btn.querySelector('.fa-list');
+
+      if (isList) {
+        productsGrid.classList.add('products-list');
+        productsGrid.classList.remove('products-grid');
+      } else {
+        productsGrid.classList.add('products-grid');
+        productsGrid.classList.remove('products-list');
+      }
+    });
+  });
+}
+
+// ============================================
 // PRODUCT CARD INTERACTIONS
 // ============================================
 function initProductCards() {
@@ -605,7 +657,7 @@ function initProductCards() {
       const product = {
         id: card.dataset.id || `prod-${Date.now()}`,
         name: card.querySelector('.product-title')?.textContent || 'Product',
-        price: parseFloat(card.querySelector('.current')?.textContent.replace('$', '')) || 0,
+        price: parseFloat(card.querySelector('[data-price-usd]')?.getAttribute('data-price-usd')) || parseFloat(card.querySelector('.current')?.textContent.replace('$', '')) || 0,
         image: card.querySelector('.product-card-image img')?.src || '',
         quantity: 1
       };
@@ -621,7 +673,7 @@ function initProductCards() {
       const product = {
         id: card.dataset.id || btn.dataset.productId || `prod-${Date.now()}`,
         name: card.querySelector('.product-title')?.textContent || 'Product',
-        price: parseFloat(card.querySelector('.current')?.textContent.replace('$', '')) || 0,
+        price: parseFloat(card.querySelector('[data-price-usd]')?.getAttribute('data-price-usd')) || parseFloat(card.querySelector('.current')?.textContent.replace('$', '')) || 0,
         image: card.querySelector('.product-card-image img')?.src || ''
       };
       toggleWishlist(product);
@@ -633,33 +685,49 @@ function initProductCards() {
 // INITIALIZE ON DOM READY
 // ============================================
 document.addEventListener('DOMContentLoaded', () => {
+  // Helper to safely run init functions
+  const safeInit = (fn, name) => {
+    try {
+      if (typeof fn === 'function') {
+        fn();
+      }
+    } catch (error) {
+      console.warn(`Error initializing ${name}:`, error);
+    }
+  };
+
   // Initialize localization first (if translations.js is loaded)
-  if (typeof initLocalization === 'function') {
-    initLocalization();
+  try {
+    if (typeof initLocalization === 'function') {
+      initLocalization();
+    }
+  } catch (error) {
+    console.error('Localization initialization failed:', error);
   }
 
-  // Initialize all components
-  initMobileMenu();
-  initHeroSlider();
-  initCountdown();
-  initSearchAutocomplete();
-  initTabs();
-  initProductGallery();
-  initQuantitySelectors();
-  initFilters();
-  initAccordion();
-  initFormValidation();
-  initCheckout();
-  initProductCards();
+  // Initialize all components safely
+  safeInit(initMobileMenu, 'MobileMenu');
+  safeInit(initHeroSlider, 'HeroSlider');
+  safeInit(initCountdown, 'Countdown');
+  safeInit(initSearchAutocomplete, 'SearchAutocomplete');
+  safeInit(initTabs, 'Tabs');
+  safeInit(initProductGallery, 'ProductGallery');
+  safeInit(initQuantitySelectors, 'QuantitySelectors');
+  safeInit(initFilters, 'Filters');
+  safeInit(initAccordion, 'Accordion');
+  safeInit(initFormValidation, 'FormValidation');
+  safeInit(initCheckout, 'Checkout');
+  safeInit(initProductCards, 'ProductCards');
+  safeInit(initViewToggle, 'ViewToggle');
 
   // Update badges
-  updateCartBadge();
-  updateWishlistBadge();
-  updateWishlistButtons();
+  safeInit(updateCartBadge, 'CartBadge');
+  safeInit(updateWishlistBadge, 'WishlistBadge');
+  safeInit(updateWishlistButtons, 'WishlistButtons');
 
   // Render cart if on cart page
   if (document.querySelector('.cart-items')) {
-    renderCart();
+    safeInit(renderCart, 'Cart');
   }
 
   console.log('E-Commerce site initialized!');

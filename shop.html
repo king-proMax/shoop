@@ -13,369 +13,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <style>
-        /* Shop Page Specific Styles */
-        .shop-layout {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: var(--spacing-6);
-            padding: var(--spacing-8) 0;
-        }
-
-        .filter-sidebar {
-            background: var(--color-white);
-            border-radius: var(--radius-lg);
-            padding: var(--spacing-6);
-            height: fit-content;
-            position: sticky;
-            top: 100px;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .filter-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--spacing-6);
-            padding-bottom: var(--spacing-4);
-            border-bottom: 1px solid var(--color-gray-200);
-        }
-
-        .filter-header h3 {
-            font-size: var(--font-size-lg);
-        }
-
-        .filter-clear {
-            color: var(--color-accent);
-            font-size: var(--font-size-sm);
-            font-weight: 500;
-        }
-
-        .filter-section {
-            margin-bottom: var(--spacing-6);
-        }
-
-        .filter-section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            margin-bottom: var(--spacing-3);
-        }
-
-        .filter-section-header h4 {
-            font-size: var(--font-size-base);
-        }
-
-        .filter-section-header i {
-            transition: transform var(--transition-fast);
-        }
-
-        .filter-section.collapsed .filter-section-header i {
-            transform: rotate(-90deg);
-        }
-
-        .filter-section.collapsed .filter-content {
-            display: none;
-        }
-
-        .filter-content {
-            display: flex;
-            flex-direction: column;
-            gap: var(--spacing-2);
-        }
-
-        .filter-option {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-2);
-            cursor: pointer;
-        }
-
-        .filter-option input {
-            accent-color: var(--color-accent);
-        }
-
-        .filter-option label {
-            font-size: var(--font-size-sm);
-            color: var(--color-gray-600);
-            cursor: pointer;
-            flex: 1;
-        }
-
-        .filter-option span {
-            font-size: var(--font-size-xs);
-            color: var(--color-gray-400);
-        }
-
-        .price-range-slider {
-            width: 100%;
-            margin: var(--spacing-4) 0;
-        }
-
-        .price-range-slider input {
-            width: 100%;
-            accent-color: var(--color-accent);
-        }
-
-        .price-range-values {
-            display: flex;
-            justify-content: space-between;
-            font-size: var(--font-size-sm);
-            color: var(--color-gray-600);
-        }
-
-        .rating-filter {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-2);
-            padding: var(--spacing-2) 0;
-            cursor: pointer;
-        }
-
-        .rating-filter:hover {
-            color: var(--color-accent);
-        }
-
-        .rating-filter .stars {
-            color: var(--color-warning);
-        }
-
-        .shop-content {
-            min-width: 0;
-        }
-
-        .shop-toolbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: var(--spacing-4);
-            margin-bottom: var(--spacing-6);
-        }
-
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-2);
-            font-size: var(--font-size-sm);
-            color: var(--color-gray-500);
-        }
-
-        .breadcrumb a:hover {
-            color: var(--color-accent);
-        }
-
-        .breadcrumb i {
-            font-size: var(--font-size-xs);
-        }
-
-        .shop-controls {
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-4);
-        }
-
-        .results-count {
-            font-size: var(--font-size-sm);
-            color: var(--color-gray-500);
-        }
-
-        .sort-select {
-            padding: var(--spacing-2) var(--spacing-4);
-            border: 1px solid var(--color-gray-200);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            background: var(--color-white);
-            cursor: pointer;
-        }
-
-        .view-toggle {
-            display: flex;
-            gap: var(--spacing-1);
-        }
-
-        .view-toggle button {
-            padding: var(--spacing-2);
-            border: 1px solid var(--color-gray-200);
-            background: var(--color-white);
-            color: var(--color-gray-500);
-            transition: all var(--transition-fast);
-        }
-
-        .view-toggle button:first-child {
-            border-radius: var(--radius-md) 0 0 var(--radius-md);
-        }
-
-        .view-toggle button:last-child {
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-        }
-
-        .view-toggle button.active {
-            background: var(--color-primary);
-            color: var(--color-white);
-            border-color: var(--color-primary);
-        }
-
-        .filter-toggle {
-            display: none;
-            padding: var(--spacing-2) var(--spacing-4);
-            background: var(--color-primary);
-            color: var(--color-white);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-        }
-
-        .filter-overlay {
-            display: none;
-        }
-
-        .products-list .product-card {
-            display: grid;
-            grid-template-columns: 200px 1fr auto;
-            gap: var(--spacing-4);
-        }
-
-        .products-list .product-card-image {
-            height: 200px;
-        }
-
-        .products-list .product-card-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .products-list .product-add-cart {
-            opacity: 1;
-            transform: none;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: var(--spacing-2);
-            margin-top: var(--spacing-8);
-        }
-
-        .pagination button {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid var(--color-gray-200);
-            background: var(--color-white);
-            border-radius: var(--radius-md);
-            font-size: var(--font-size-sm);
-            transition: all var(--transition-fast);
-        }
-
-        .pagination button:hover {
-            border-color: var(--color-accent);
-            color: var(--color-accent);
-        }
-
-        .pagination button.active {
-            background: var(--color-accent);
-            border-color: var(--color-accent);
-            color: var(--color-white);
-        }
-
-        .load-more {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: var(--spacing-8) auto 0;
-            padding: var(--spacing-4);
-            background: var(--color-white);
-            border: 2px solid var(--color-primary);
-            color: var(--color-primary);
-            font-weight: 600;
-            border-radius: var(--radius-md);
-            transition: all var(--transition-fast);
-        }
-
-        .load-more:hover {
-            background: var(--color-primary);
-            color: var(--color-white);
-        }
-
-        @media (max-width: 1024px) {
-            .shop-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .filter-sidebar {
-                position: fixed;
-                top: 0;
-                left: -100%;
-                width: 300px;
-                height: 100vh;
-                z-index: 1002;
-                border-radius: 0;
-                transition: left var(--transition-base);
-                overflow-y: auto;
-            }
-
-            .filter-sidebar.active {
-                left: 0;
-            }
-
-            .filter-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                right: 0;
-                bottom: 0;
-                background: rgba(0, 0, 0, 0.5);
-                z-index: 1001;
-                display: none;
-            }
-
-            .filter-overlay.active {
-                display: block;
-            }
-
-            .filter-toggle {
-                display: flex;
-                align-items: center;
-                gap: var(--spacing-2);
-            }
-
-            .filter-close {
-                display: block;
-                position: absolute;
-                top: var(--spacing-4);
-                right: var(--spacing-4);
-                font-size: var(--font-size-xl);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .products-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: var(--spacing-4);
-            }
-
-            .shop-toolbar {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .shop-controls {
-                width: 100%;
-                justify-content: space-between;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -384,7 +21,7 @@
         <div class="container">
             <div class="top-bar-promo">
                 <i class="fas fa-truck"></i>
-                <span>Free Shipping on orders over $50!</span>
+                <span data-translate="free_shipping">Free Shipping on orders over $50!</span>
             </div>
             <div class="top-bar-actions">
                 <select id="language-select" aria-label="Language">
@@ -405,225 +42,183 @@
         <div class="container">
             <a href="index.html" class="logo">
                 <i class="fas fa-shopping-bag"></i>
-                Shop<span>Hub</span>
+                <span data-translate="site_name">ShopHub</span>
             </a>
 
             <div class="search-bar">
-                <select aria-label="Category">
-                    <option value="">All Categories</option>
-                    <option value="electronics">Electronics</option>
-                    <option value="fashion">Fashion</option>
-                    <option value="home">Home & Garden</option>
+                <select>
+                    <option value="" data-translate="all_categories">All Categories</option>
+                    <option value="electronics" data-translate="electronics">Electronics</option>
+                    <option value="fashion" data-translate="fashion">Fashion</option>
+                    <option value="home" data-translate="home_garden">Home & Garden</option>
+                    <option value="beauty" data-translate="beauty">Beauty</option>
+                    <option value="sports" data-translate="sports">Sports</option>
                 </select>
-                <input type="text" placeholder="Search for products..." id="search-input">
-                <button type="button" aria-label="Search"><i class="fas fa-search"></i></button>
+                <input type="text" placeholder="Search for products..." data-translate-placeholder="search_placeholder">
+                <button type="button"><i class="fas fa-search"></i></button>
                 <div class="search-autocomplete"></div>
             </div>
 
             <div class="header-actions">
-                <a href="dashboard.html" class="header-action" title="My Account"><i class="fas fa-user"></i></a>
-                <a href="dashboard.html#wishlist" class="header-action" title="Wishlist">
+                <a href="dashboard.html" class="header-action" data-translate-title="account" title="Account">
+                    <i class="fas fa-user"></i>
+                    <span class="header-action-label" data-translate="account">Account</span>
+                </a>
+                <a href="dashboard.html#wishlist" class="header-action" data-translate-title="wishlist"
+                    title="Wishlist">
                     <i class="fas fa-heart"></i>
-                    <span class="badge wishlist-badge" style="display: none;">0</span>
+                    <span class="badge wishlist-badge" style="display:none;">0</span>
+                    <span class="header-action-label" data-translate="wishlist">Wishlist</span>
                 </a>
-                <a href="cart.html" class="header-action" title="Cart">
+                <a href="cart.html" class="header-action" data-translate-title="cart" title="Cart">
                     <i class="fas fa-shopping-bag"></i>
-                    <span class="badge cart-badge" style="display: none;">0</span>
+                    <span class="badge cart-badge" style="display:none;">0</span>
+                    <span class="header-action-label" data-translate="cart">Cart</span>
                 </a>
-                <button class="mobile-menu-toggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
             </div>
+
+            <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
         </div>
     </header>
 
-    <!-- Main Content -->
-    <main>
+    <!-- Shop Page -->
+    <main class="shop-page">
         <div class="container">
             <div class="shop-layout">
                 <!-- Filter Sidebar -->
                 <aside class="filter-sidebar">
-                    <button class="filter-close"><i class="fas fa-times"></i></button>
                     <div class="filter-header">
-                        <h3><i class="fas fa-sliders-h"></i> Filters</h3>
-                        <a href="#" class="filter-clear">Clear All</a>
+                        <h3 data-translate="filters">Filters</h3>
+                        <a href="#" class="filter-clear" data-translate="clear_all">Clear All</a>
+                        <button class="filter-close"><i class="fas fa-times"></i></button>
                     </div>
 
-                    <!-- Categories Filter -->
                     <div class="filter-section">
                         <div class="filter-section-header">
-                            <h4>Categories</h4>
+                            <h4 data-translate="categories">Categories</h4>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="filter-content">
-                            <label class="filter-option">
-                                <input type="checkbox" name="category" value="electronics">
-                                <span>Electronics</span>
-                                <span>(2,534)</span>
-                            </label>
-                            <label class="filter-option">
-                                <input type="checkbox" name="category" value="fashion">
-                                <span>Fashion</span>
-                                <span>(5,821)</span>
-                            </label>
-                            <label class="filter-option">
-                                <input type="checkbox" name="category" value="home">
-                                <span>Home & Garden</span>
-                                <span>(3,218)</span>
-                            </label>
-                            <label class="filter-option">
-                                <input type="checkbox" name="category" value="beauty">
-                                <span>Beauty</span>
-                                <span>(1,923)</span>
-                            </label>
-                            <label class="filter-option">
-                                <input type="checkbox" name="category" value="sports">
-                                <span>Sports</span>
-                                <span>(2,145)</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Price Range Filter -->
-                    <div class="filter-section">
-                        <div class="filter-section-header">
-                            <h4>Price Range</h4>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="filter-content">
-                            <div class="price-range-slider">
-                                <input type="range" min="0" max="1000" value="500" class="price-range">
+                            <div class="filter-option">
+                                <input type="checkbox" id="cat-electronics">
+                                <label for="cat-electronics" data-translate="electronics">Electronics</label>
+                                <span>(120)</span>
                             </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="cat-fashion">
+                                <label for="cat-fashion" data-translate="fashion">Fashion</label>
+                                <span>(350)</span>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="cat-home">
+                                <label for="cat-home" data-translate="home_garden">Home & Garden</label>
+                                <span>(180)</span>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="cat-beauty">
+                                <label for="cat-beauty" data-translate="beauty">Beauty</label>
+                                <span>(90)</span>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="cat-sports">
+                                <label for="cat-sports" data-translate="sports">Sports</label>
+                                <span>(65)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-section">
+                        <div class="filter-section-header">
+                            <h4 data-translate="price_range">Price Range</h4>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="filter-content">
                             <div class="price-range-values">
                                 <span class="price-min">$0</span>
-                                <span class="price-max">$500</span>
+                                <span class="price-max">$1000</span>
+                            </div>
+                            <div class="price-range-slider">
+                                <input type="range" min="0" max="1000" value="1000" class="price-range">
                             </div>
                         </div>
                     </div>
 
-                    <!-- Brand Filter -->
                     <div class="filter-section">
                         <div class="filter-section-header">
-                            <h4>Brand</h4>
+                            <h4 data-translate="brand">Brand</h4>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="filter-content">
-                            <label class="filter-option">
-                                <input type="checkbox" name="brand" value="apple">
-                                <span>Apple</span>
-                                <span>(423)</span>
-                            </label>
-                            <label class="filter-option">
-                                <input type="checkbox" name="brand" value="samsung">
-                                <span>Samsung</span>
-                                <span>(387)</span>
-                            </label>
-                            <label class="filter-option">
-                                <input type="checkbox" name="brand" value="sony">
-                                <span>Sony</span>
-                                <span>(256)</span>
-                            </label>
-                            <label class="filter-option">
-                                <input type="checkbox" name="brand" value="nike">
-                                <span>Nike</span>
-                                <span>(892)</span>
-                            </label>
-                            <label class="filter-option">
-                                <input type="checkbox" name="brand" value="adidas">
-                                <span>Adidas</span>
-                                <span>(754)</span>
-                            </label>
+                            <div class="filter-option">
+                                <input type="checkbox" id="brand-apple">
+                                <label for="brand-apple">Apple</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="brand-samsung">
+                                <label for="brand-samsung">Samsung</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="brand-nike">
+                                <label for="brand-nike">Nike</label>
+                            </div>
+                            <div class="filter-option">
+                                <input type="checkbox" id="brand-adidas">
+                                <label for="brand-adidas">Adidas</label>
+                            </div>
                         </div>
                     </div>
 
-                    <!-- Rating Filter -->
                     <div class="filter-section">
                         <div class="filter-section-header">
-                            <h4>Rating</h4>
+                            <h4 data-translate="rating">Rating</h4>
                             <i class="fas fa-chevron-down"></i>
                         </div>
                         <div class="filter-content">
-                            <label class="rating-filter">
-                                <input type="radio" name="rating" value="5">
-                                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i></span>
-                                <span>& Up</span>
-                            </label>
-                            <label class="rating-filter">
-                                <input type="radio" name="rating" value="4">
-                                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="far fa-star"></i></span>
-                                <span>& Up</span>
-                            </label>
-                            <label class="rating-filter">
-                                <input type="radio" name="rating" value="3">
-                                <span class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                        class="fas fa-star"></i><i class="far fa-star"></i><i
-                                        class="far fa-star"></i></span>
-                                <span>& Up</span>
-                            </label>
-                        </div>
-                    </div>
-
-                    <!-- Color Filter -->
-                    <div class="filter-section">
-                        <div class="filter-section-header">
-                            <h4>Color</h4>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="filter-content"
-                            style="flex-direction: row; flex-wrap: wrap; gap: var(--spacing-2);">
-                            <button
-                                style="width: 30px; height: 30px; border-radius: 50%; background: #000; border: 2px solid var(--color-gray-200);"
-                                title="Black"></button>
-                            <button
-                                style="width: 30px; height: 30px; border-radius: 50%; background: #fff; border: 2px solid var(--color-gray-200);"
-                                title="White"></button>
-                            <button
-                                style="width: 30px; height: 30px; border-radius: 50%; background: #3B82F6; border: 2px solid transparent;"
-                                title="Blue"></button>
-                            <button
-                                style="width: 30px; height: 30px; border-radius: 50%; background: #EF4444; border: 2px solid transparent;"
-                                title="Red"></button>
-                            <button
-                                style="width: 30px; height: 30px; border-radius: 50%; background: #22C55E; border: 2px solid transparent;"
-                                title="Green"></button>
-                            <button
-                                style="width: 30px; height: 30px; border-radius: 50%; background: #F59E0B; border: 2px solid transparent;"
-                                title="Yellow"></button>
+                            <div class="rating-filter">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="fas fa-star"></i>
+                                </div>
+                                <span data-translate="and_up">& Up</span>
+                            </div>
+                            <div class="rating-filter">
+                                <div class="stars">
+                                    <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                                        class="fas fa-star"></i><i class="far fa-star"></i>
+                                </div>
+                                <span data-translate="and_up">& Up</span>
+                            </div>
                         </div>
                     </div>
                 </aside>
 
-                <div class="filter-overlay"></div>
-
                 <!-- Shop Content -->
                 <div class="shop-content">
                     <div class="shop-toolbar">
-                        <nav class="breadcrumb">
-                            <a href="index.html">Home</a>
+                        <div class="breadcrumb">
+                            <a href="index.html" data-translate="home">Home</a>
                             <i class="fas fa-chevron-right"></i>
-                            <span>All Products</span>
-                        </nav>
-
+                            <span data-translate="all_products">All Products</span>
+                        </div>
                         <div class="shop-controls">
-                            <button class="filter-toggle"><i class="fas fa-sliders-h"></i> Filters</button>
-                            <span class="results-count">Showing 1-12 of 156 results</span>
+                            <span class="results-count"><span data-translate="showing_results">Showing results</span>
+                                1-12</span>
                             <select class="sort-select">
-                                <option value="featured">Featured</option>
-                                <option value="newest">Newest</option>
-                                <option value="price-low">Price: Low to High</option>
-                                <option value="price-high">Price: High to Low</option>
-                                <option value="rating">Best Rating</option>
+                                <option value="featured" data-translate="sort_featured">Featured</option>
+                                <option value="newest" data-translate="sort_newest">Newest</option>
+                                <option value="price-low" data-translate="sort_price_low">Price: Low to High</option>
+                                <option value="price-high" data-translate="sort_price_high">Price: High to Low</option>
+                                <option value="rating" data-translate="sort_rating">Best Rating</option>
                             </select>
                             <div class="view-toggle">
-                                <button class="active" title="Grid View"><i class="fas fa-th"></i></button>
-                                <button title="List View"><i class="fas fa-list"></i></button>
+                                <button class="active"><i class="fas fa-th-large"></i></button>
+                                <button><i class="fas fa-list"></i></button>
                             </div>
+                            <button class="filter-toggle"><i class="fas fa-sliders-h"></i> <span
+                                    data-translate="filters">Filters</span></button>
                         </div>
                     </div>
 
-                    <!-- Products Grid -->
                     <div class="products-grid">
                         <!-- Product 1 -->
                         <div class="product-card" data-id="prod-1">
@@ -638,8 +233,9 @@
                                 </div>
                             </div>
                             <div class="product-card-content">
-                                <span class="product-category">Electronics</span>
-                                <h3 class="product-title"><a href="product.html">Premium Wireless Headphones</a></h3>
+                                <span class="product-category" data-translate="electronics">Electronics</span>
+                                <h3 class="product-title"><a href="product.html"
+                                        data-translate="product_headphones_title">Premium Wireless Headphones</a></h3>
                                 <div class="product-rating">
                                     <div class="product-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                             class="fas fa-star"></i><i class="fas fa-star"></i><i
@@ -647,11 +243,11 @@
                                     <span>(128)</span>
                                 </div>
                                 <div class="product-price">
-                                    <span class="current">$89.99</span>
-                                    <span class="original">$149.99</span>
+                                    <span class="current" data-price-usd="89.99">$89.99</span>
+                                    <span class="original" data-price-usd="149.99">$149.99</span>
                                 </div>
-                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to
-                                    Cart</button>
+                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> <span
+                                        data-translate="add_to_cart">Add to Cart</span></button>
                             </div>
                         </div>
 
@@ -660,7 +256,7 @@
                             <div class="product-card-image">
                                 <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400"
                                     alt="Smart Watch">
-                                <span class="product-badge new">New</span>
+                                <span class="product-badge new" data-translate="new">New</span>
                                 <div class="product-actions">
                                     <button class="product-action-btn wishlist-btn" data-product-id="prod-2"><i
                                             class="far fa-heart"></i></button>
@@ -668,8 +264,9 @@
                                 </div>
                             </div>
                             <div class="product-card-content">
-                                <span class="product-category">Electronics</span>
-                                <h3 class="product-title"><a href="product.html">Smart Watch Pro Series 5</a></h3>
+                                <span class="product-category" data-translate="electronics">Electronics</span>
+                                <h3 class="product-title"><a href="product.html"
+                                        data-translate="product_watch_title">Smart Watch Pro Series 5</a></h3>
                                 <div class="product-rating">
                                     <div class="product-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                             class="fas fa-star"></i><i class="fas fa-star"></i><i
@@ -677,10 +274,10 @@
                                     <span>(256)</span>
                                 </div>
                                 <div class="product-price">
-                                    <span class="current">$299.99</span>
+                                    <span class="current" data-price-usd="299.99">$299.99</span>
                                 </div>
-                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to
-                                    Cart</button>
+                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> <span
+                                        data-translate="add_to_cart">Add to Cart</span></button>
                             </div>
                         </div>
 
@@ -696,8 +293,9 @@
                                 </div>
                             </div>
                             <div class="product-card-content">
-                                <span class="product-category">Fashion</span>
-                                <h3 class="product-title"><a href="product.html">Air Max Sneakers Red</a></h3>
+                                <span class="product-category" data-translate="fashion">Fashion</span>
+                                <h3 class="product-title"><a href="product.html"
+                                        data-translate="product_sneakers_title">Air Max Sneakers Red</a></h3>
                                 <div class="product-rating">
                                     <div class="product-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
                                             class="fas fa-star"></i><i class="fas fa-star"></i><i
@@ -705,170 +303,16 @@
                                     <span>(45)</span>
                                 </div>
                                 <div class="product-price">
-                                    <span class="current">$129.99</span>
+                                    <span class="current" data-price-usd="129.99">$129.99</span>
                                 </div>
-                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to
-                                    Cart</button>
-                            </div>
-                        </div>
-
-                        <!-- Product 4 -->
-                        <div class="product-card" data-id="prod-4">
-                            <div class="product-card-image">
-                                <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400"
-                                    alt="Running Shoes">
-                                <span class="product-badge sale">-50%</span>
-                                <div class="product-actions">
-                                    <button class="product-action-btn wishlist-btn" data-product-id="prod-4"><i
-                                            class="far fa-heart"></i></button>
-                                    <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                                </div>
-                            </div>
-                            <div class="product-card-content">
-                                <span class="product-category">Sports</span>
-                                <h3 class="product-title"><a href="product.html">Ultra Boost Running Shoes</a></h3>
-                                <div class="product-rating">
-                                    <div class="product-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="far fa-star"></i></div>
-                                    <span>(89)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current">$79.99</span>
-                                    <span class="original">$159.99</span>
-                                </div>
-                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to
-                                    Cart</button>
-                            </div>
-                        </div>
-
-                        <!-- Product 5 -->
-                        <div class="product-card" data-id="prod-5">
-                            <div class="product-card-image">
-                                <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400"
-                                    alt="Perfume">
-                                <div class="product-actions">
-                                    <button class="product-action-btn wishlist-btn" data-product-id="prod-5"><i
-                                            class="far fa-heart"></i></button>
-                                    <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                                </div>
-                            </div>
-                            <div class="product-card-content">
-                                <span class="product-category">Beauty</span>
-                                <h3 class="product-title"><a href="product.html">Luxury Eau de Parfum</a></h3>
-                                <div class="product-rating">
-                                    <div class="product-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star-half-alt"></i></div>
-                                    <span>(67)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current">$99.99</span>
-                                </div>
-                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to
-                                    Cart</button>
-                            </div>
-                        </div>
-
-                        <!-- Product 6 -->
-                        <div class="product-card" data-id="prod-6">
-                            <div class="product-card-image">
-                                <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400"
-                                    alt="Speaker">
-                                <span class="product-badge sale">-35%</span>
-                                <div class="product-actions">
-                                    <button class="product-action-btn wishlist-btn" data-product-id="prod-6"><i
-                                            class="far fa-heart"></i></button>
-                                    <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                                </div>
-                            </div>
-                            <div class="product-card-content">
-                                <span class="product-category">Electronics</span>
-                                <h3 class="product-title"><a href="product.html">Portable Bluetooth Speaker</a></h3>
-                                <div class="product-rating">
-                                    <div class="product-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i></div>
-                                    <span>(312)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current">$54.99</span>
-                                    <span class="original">$84.99</span>
-                                </div>
-                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to
-                                    Cart</button>
-                            </div>
-                        </div>
-
-                        <!-- Product 7 -->
-                        <div class="product-card" data-id="prod-7">
-                            <div class="product-card-image">
-                                <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=400"
-                                    alt="Backpack">
-                                <span class="product-badge new">New</span>
-                                <div class="product-actions">
-                                    <button class="product-action-btn wishlist-btn" data-product-id="prod-7"><i
-                                            class="far fa-heart"></i></button>
-                                    <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                                </div>
-                            </div>
-                            <div class="product-card-content">
-                                <span class="product-category">Fashion</span>
-                                <h3 class="product-title"><a href="product.html">Premium Leather Backpack</a></h3>
-                                <div class="product-rating">
-                                    <div class="product-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="far fa-star"></i></div>
-                                    <span>(28)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current">$189.99</span>
-                                </div>
-                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to
-                                    Cart</button>
-                            </div>
-                        </div>
-
-                        <!-- Product 8 -->
-                        <div class="product-card" data-id="prod-8">
-                            <div class="product-card-image">
-                                <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400"
-                                    alt="Smart Watch">
-                                <div class="product-actions">
-                                    <button class="product-action-btn wishlist-btn" data-product-id="prod-8"><i
-                                            class="far fa-heart"></i></button>
-                                    <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-                                </div>
-                            </div>
-                            <div class="product-card-content">
-                                <span class="product-category">Electronics</span>
-                                <h3 class="product-title"><a href="product.html">Smart Fitness Watch</a></h3>
-                                <div class="product-rating">
-                                    <div class="product-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i><i class="fas fa-star"></i><i
-                                            class="fas fa-star"></i></div>
-                                    <span>(524)</span>
-                                </div>
-                                <div class="product-price">
-                                    <span class="current">$179.99</span>
-                                    <span class="original">$219.99</span>
-                                </div>
-                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to
-                                    Cart</button>
+                                <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> <span
+                                        data-translate="add_to_cart">Add to Cart</span></button>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Pagination -->
-                    <div class="pagination">
-                        <button><i class="fas fa-chevron-left"></i></button>
-                        <button class="active">1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>...</button>
-                        <button>12</button>
-                        <button><i class="fas fa-chevron-right"></i></button>
+                    <div class="load-more-container">
+                        <button class="load-more" data-translate="load_more">Load More</button>
                     </div>
                 </div>
             </div>
@@ -880,47 +324,56 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    <a href="index.html" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span>Hub</span></a>
-                    <p>Your one-stop destination for premium products across electronics, fashion, home goods, and more.
-                    </p>
+                    <a href="index.html" class="logo">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span data-translate="site_name">ShopHub</span>
+                    </a>
+                    <p data-translate="your_one_stop">Your one-stop destination for premium products.</p>
                     <div class="footer-social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
+
                 <div class="footer-column">
-                    <h4>Customer Service</h4>
+                    <h4 data-translate="customer_service">Customer Service</h4>
                     <ul>
-                        <li><a href="contact.html">Help Center</a></li>
-                        <li><a href="faq.html">Returns & Refunds</a></li>
-                        <li><a href="faq.html">Shipping Info</a></li>
+                        <li><a href="contact.html" data-translate="help_center">Help Center</a></li>
+                        <li><a href="faq.html" data-translate="returns_refunds">Returns & Refunds</a></li>
+                        <li><a href="faq.html" data-translate="shipping_info">Shipping Info</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-column">
-                    <h4>Quick Links</h4>
+                    <h4 data-translate="quick_links">Quick Links</h4>
                     <ul>
-                        <li><a href="about.html">About Us</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="about.html" data-translate="about_us">About Us</a></li>
+                        <li><a href="contact.html" data-translate="contact_us">Contact Us</a></li>
+                        <li><a href="#" data-translate="privacy_policy">Privacy Policy</a></li>
                     </ul>
                 </div>
+
                 <div class="footer-column footer-newsletter">
-                    <h4>Newsletter</h4>
-                    <p>Subscribe for exclusive deals.</p>
+                    <h4 data-translate="newsletter">Newsletter</h4>
+                    <p data-translate="newsletter_desc">Subscribe for exclusive deals.</p>
                     <form class="newsletter-form">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit">Subscribe</button>
+                        <input type="email" placeholder="Enter your email" data-translate-placeholder="enter_email"
+                            required>
+                        <button type="submit" data-translate="subscribe">Subscribe</button>
                     </form>
                 </div>
             </div>
+
             <div class="footer-bottom">
-                <p class="footer-copyright">&copy; 2024 ShopHub. All rights reserved.</p>
+                <p class="footer-copyright">&copy; 2024 ShopHub. <span data-translate="all_rights">All rights
+                        reserved.</span></p>
             </div>
         </div>
     </footer>
 
+    <!-- JavaScript -->
     <script src="js/translations.js"></script>
     <script src="js/main.js"></script>
 </body>

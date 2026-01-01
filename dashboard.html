@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 
 <head>
     <meta charset="UTF-8">
@@ -394,12 +394,13 @@
     <!-- Header -->
     <header class="header">
         <div class="container">
-            <a href="index.html" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span>Hub</span></a>
+            <a href="index.html" class="logo"><i class="fas fa-shopping-bag"></i> Shop<span
+                    data-translate="hub">Hub</span></a>
             <div class="search-bar">
                 <select>
-                    <option value="">All Categories</option>
+                    <option value="" data-translate="all_categories">All Categories</option>
                 </select>
-                <input type="text" placeholder="Search for products...">
+                <input type="text" placeholder="Search for products..." data-translate-placeholder="search_placeholder">
                 <button type="button"><i class="fas fa-search"></i></button>
             </div>
             <div class="header-actions">
@@ -424,12 +425,18 @@
                         <p>john.doe@email.com</p>
                     </div>
                     <nav class="dashboard-nav">
-                        <a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                        <a href="#orders"><i class="fas fa-shopping-bag"></i> Orders</a>
-                        <a href="#addresses"><i class="fas fa-map-marker-alt"></i> Addresses</a>
-                        <a href="#account"><i class="fas fa-user-cog"></i> Account Details</a>
-                        <a href="#wishlist"><i class="fas fa-heart"></i> Wishlist</a>
-                        <a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a href="#dashboard" class="active"><i class="fas fa-tachometer-alt"></i> <span
+                                data-translate="dashboard">Dashboard</span></a>
+                        <a href="#orders"><i class="fas fa-shopping-bag"></i> <span
+                                data-translate="orders">Orders</span></a>
+                        <a href="#addresses"><i class="fas fa-map-marker-alt"></i> <span
+                                data-translate="addresses">Addresses</span></a>
+                        <a href="#account"><i class="fas fa-user-cog"></i> <span
+                                data-translate="account_details">Account Details</span></a>
+                        <a href="#wishlist"><i class="fas fa-heart"></i> <span
+                                data-translate="wishlist">Wishlist</span></a>
+                        <a href="index.html" class="logout"><i class="fas fa-sign-out-alt"></i> <span
+                                data-translate="logout">Logout</span></a>
                     </nav>
                 </aside>
 
@@ -438,28 +445,28 @@
                     <!-- Dashboard Overview -->
                     <section class="dashboard-section" id="dashboard">
                         <div class="section-header">
-                            <h2>Dashboard Overview</h2>
+                            <h2 data-translate="dashboard_overview">Dashboard Overview</h2>
                         </div>
                         <div class="stats-grid">
                             <div class="stat-card">
                                 <i class="fas fa-shopping-bag"></i>
                                 <h4>12</h4>
-                                <p>Total Orders</p>
+                                <p data-translate="total_orders">Total Orders</p>
                             </div>
                             <div class="stat-card">
                                 <i class="fas fa-truck"></i>
                                 <h4>2</h4>
-                                <p>Pending</p>
+                                <p data-translate="pending">Pending</p>
                             </div>
                             <div class="stat-card">
                                 <i class="fas fa-heart"></i>
                                 <h4>8</h4>
-                                <p>Wishlist Items</p>
+                                <p data-translate="wishlist_items">Wishlist Items</p>
                             </div>
                             <div class="stat-card">
                                 <i class="fas fa-star"></i>
                                 <h4>5</h4>
-                                <p>Reviews Given</p>
+                                <p data-translate="reviews_given">Reviews Given</p>
                             </div>
                         </div>
                     </section>
@@ -467,18 +474,18 @@
                     <!-- Recent Orders -->
                     <section class="dashboard-section" id="orders">
                         <div class="section-header">
-                            <h2>Recent Orders</h2>
-                            <a href="#" class="btn btn-outline btn-sm">View All</a>
+                            <h2 data-translate="recent_orders">Recent Orders</h2>
+                            <a href="#" class="btn btn-outline btn-sm" data-translate="view_all">View All</a>
                         </div>
                         <div style="overflow-x: auto;">
                             <table class="orders-table">
                                 <thead>
                                     <tr>
-                                        <th>Order ID</th>
-                                        <th>Date</th>
-                                        <th>Status</th>
-                                        <th>Total</th>
-                                        <th>Action</th>
+                                        <th data-translate="order_id">Order ID</th>
+                                        <th data-translate="date">Date</th>
+                                        <th data-translate="status">Status</th>
+                                        <th data-translate="total">Total</th>
+                                        <th data-translate="action">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -518,7 +525,7 @@
                     <!-- Addresses -->
                     <section class="dashboard-section" id="addresses">
                         <div class="section-header">
-                            <h2>Saved Addresses</h2>
+                            <h2 data-translate="saved_addresses">Saved Addresses</h2>
                         </div>
                         <div class="address-grid">
                             <div class="address-card default">
@@ -542,7 +549,7 @@
                             </div>
                             <div class="address-card add-address-card">
                                 <i class="fas fa-plus"></i>
-                                <span>Add New Address</span>
+                                <span data-translate="add_new_address">Add New Address</span>
                             </div>
                         </div>
                     </section>
@@ -550,39 +557,40 @@
                     <!-- Account Details -->
                     <section class="dashboard-section" id="account">
                         <div class="section-header">
-                            <h2>Account Details</h2>
+                            <h2 data-translate="account_details">Account Details</h2>
                         </div>
                         <form class="form-grid" data-validate>
                             <div class="form-group">
-                                <label>First Name</label>
+                                <label data-translate="first_name">First Name</label>
                                 <input type="text" value="John" required>
                             </div>
                             <div class="form-group">
-                                <label>Last Name</label>
+                                <label data-translate="last_name">Last Name</label>
                                 <input type="text" value="Doe" required>
                             </div>
                             <div class="form-group full">
-                                <label>Email Address</label>
+                                <label data-translate="email_address">Email Address</label>
                                 <input type="email" value="john.doe@email.com" required>
                             </div>
                             <div class="form-group full">
-                                <label>Phone Number</label>
+                                <label data-translate="phone_number">Phone Number</label>
                                 <input type="tel" value="+1 (555) 123-4567">
                             </div>
                             <div class="form-group full">
-                                <label>Current Password (leave blank to keep)</label>
-                                <input type="password" placeholder="••••••••">
+                                <label data-translate="current_password">Current Password (leave blank to keep)</label>
+                                <input type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢">
                             </div>
                             <div class="form-group">
-                                <label>New Password</label>
-                                <input type="password" placeholder="••••••••">
+                                <label data-translate="new_password">New Password</label>
+                                <input type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢">
                             </div>
                             <div class="form-group">
-                                <label>Confirm New Password</label>
-                                <input type="password" placeholder="••••••••">
+                                <label data-translate="confirm_password">Confirm New Password</label>
+                                <input type="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢">
                             </div>
                             <div class="form-group full">
-                                <button type="submit" class="btn btn-primary">Save Changes</button>
+                                <button type="submit" class="btn btn-primary" data-translate="save_changes">Save
+                                    Changes</button>
                             </div>
                         </form>
                     </section>
@@ -590,7 +598,7 @@
                     <!-- Wishlist -->
                     <section class="dashboard-section" id="wishlist">
                         <div class="section-header">
-                            <h2>My Wishlist</h2>
+                            <h2 data-translate="my_wishlist">My Wishlist</h2>
                         </div>
                         <div class="wishlist-grid">
                             <div class="product-card" data-id="wish-1">
@@ -606,7 +614,8 @@
                                     <span class="product-category">Electronics</span>
                                     <h3 class="product-title"><a href="product.html">Premium Wireless Headphones</a>
                                     </h3>
-                                    <div class="product-price"><span class="current">$89.99</span></div>
+                                    <div class="product-price"><span class="current"
+                                            data-price-usd="89.99">$89.99</span></div>
                                     <button class="product-add-cart" style="opacity:1;transform:none;"><i
                                             class="fas fa-shopping-cart"></i> Add to Cart</button>
                                 </div>
@@ -623,7 +632,8 @@
                                 <div class="product-card-content">
                                     <span class="product-category">Electronics</span>
                                     <h3 class="product-title"><a href="product.html">Smart Watch Pro</a></h3>
-                                    <div class="product-price"><span class="current">$299.99</span></div>
+                                    <div class="product-price"><span class="current"
+                                            data-price-usd="299.99">$299.99</span></div>
                                     <button class="product-add-cart" style="opacity:1;transform:none;"><i
                                             class="fas fa-shopping-cart"></i> Add to Cart</button>
                                 </div>

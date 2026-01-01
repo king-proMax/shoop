@@ -48,170 +48,59 @@
     <div class="container">
       <a href="index.html" class="logo">
         <i class="fas fa-shopping-bag"></i>
-        Shop<span>Hub</span>
+        <span data-translate="site_name">ShopHub</span>
       </a>
 
       <div class="search-bar">
-        <select aria-label="Category" id="category-select">
-          <option value="" data-i18n="header.allCategories">All Categories</option>
-          <option value="electronics" data-i18n="nav.electronics">Electronics</option>
-          <option value="fashion" data-i18n="nav.fashion">Fashion</option>
-          <option value="home" data-i18n="nav.homeGarden">Home & Garden</option>
-          <option value="beauty" data-i18n="nav.beauty">Beauty</option>
-          <option value="sports" data-i18n="nav.sports">Sports</option>
+        <select>
+          <option value="" data-translate="all_categories">جميع الفئات</option>
+          <option value="electronics" data-translate="electronics">الإلكترونيات</option>
+          <option value="fashion" data-translate="fashion">الأزياء</option>
+          <option value="home" data-translate="home_garden">المنزل والحديقة</option>
+          <option value="beauty" data-translate="beauty">الجمال</option>
+          <option value="sports" data-translate="sports">الرياضة</option>
         </select>
-        <input type="text" placeholder="Search for products, brands and more..." id="search-input"
-          data-i18n="header.searchPlaceholder">
-        <button type="button" aria-label="Search"><i class="fas fa-search"></i></button>
+        <input type="text" placeholder="ابحث عن المنتجات..." data-translate-placeholder="search_placeholder">
+        <button type="button"><i class="fas fa-search"></i></button>
         <div class="search-autocomplete"></div>
       </div>
 
       <div class="header-actions">
-        <a href="dashboard.html" class="header-action" title="My Account">
+        <a href="dashboard.html" class="header-action" data-translate-title="account" title="حسابي">
           <i class="fas fa-user"></i>
-          <span data-i18n="header.account">Account</span>
+          <span class="header-action-label" data-translate="account">حسابي</span>
         </a>
-        <a href="dashboard.html#wishlist" class="header-action" title="Wishlist">
+        <a href="dashboard.html#wishlist" class="header-action" data-translate-title="wishlist" title="المفضلة">
           <i class="fas fa-heart"></i>
-          <span data-i18n="header.wishlist">Wishlist</span>
-          <span class="badge wishlist-badge" style="display: none;">0</span>
+          <span class="badge wishlist-badge" style="display:none;">0</span>
+          <span class="header-action-label" data-translate="wishlist">المفضلة</span>
         </a>
-        <a href="cart.html" class="header-action" title="Shopping Cart">
+        <a href="cart.html" class="header-action" data-translate-title="cart" title="السلة">
           <i class="fas fa-shopping-bag"></i>
-          <span data-i18n="header.cart">Cart</span>
-          <span class="badge cart-badge" style="display: none;">0</span>
+          <span class="badge cart-badge" style="display:none;">0</span>
+          <span class="header-action-label" data-translate="cart">السلة</span>
         </a>
-        <button class="mobile-menu-toggle" aria-label="Menu">
-          <i class="fas fa-bars"></i>
-        </button>
       </div>
+
+      <button class="mobile-menu-toggle"><i class="fas fa-bars"></i></button>
     </div>
   </header>
 
   <!-- Navigation -->
   <nav class="nav">
     <div class="container">
-      <button class="mobile-menu-close" aria-label="Close Menu">
-        <i class="fas fa-times"></i>
-      </button>
+      <div class="mobile-menu-header">
+        <span class="logo"><span data-translate="site_name">ShopHub</span></span>
+        <button class="mobile-menu-close"><i class="fas fa-times"></i></button>
+      </div>
       <ul class="nav-list">
-        <li class="nav-item">
-          <a href="shop.html?cat=electronics" class="nav-link">
-            <i class="fas fa-laptop"></i> Electronics <i class="fas fa-chevron-down"></i>
-          </a>
-          <div class="mega-menu">
-            <div class="mega-menu-column">
-              <h4>Computers</h4>
-              <ul>
-                <li><a href="shop.html">Laptops</a></li>
-                <li><a href="shop.html">Desktops</a></li>
-                <li><a href="shop.html">Tablets</a></li>
-                <li><a href="shop.html">Monitors</a></li>
-              </ul>
-            </div>
-            <div class="mega-menu-column">
-              <h4>Mobile</h4>
-              <ul>
-                <li><a href="shop.html">Smartphones</a></li>
-                <li><a href="shop.html">Cases & Covers</a></li>
-                <li><a href="shop.html">Chargers</a></li>
-                <li><a href="shop.html">Accessories</a></li>
-              </ul>
-            </div>
-            <div class="mega-menu-column">
-              <h4>Audio</h4>
-              <ul>
-                <li><a href="shop.html">Headphones</a></li>
-                <li><a href="shop.html">Speakers</a></li>
-                <li><a href="shop.html">Earbuds</a></li>
-                <li><a href="shop.html">Soundbars</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a href="shop.html?cat=fashion" class="nav-link">
-            <i class="fas fa-tshirt"></i> Fashion <i class="fas fa-chevron-down"></i>
-          </a>
-          <div class="mega-menu">
-            <div class="mega-menu-column">
-              <h4>Men</h4>
-              <ul>
-                <li><a href="shop.html">T-Shirts</a></li>
-                <li><a href="shop.html">Shirts</a></li>
-                <li><a href="shop.html">Jeans</a></li>
-                <li><a href="shop.html">Shoes</a></li>
-              </ul>
-            </div>
-            <div class="mega-menu-column">
-              <h4>Women</h4>
-              <ul>
-                <li><a href="shop.html">Dresses</a></li>
-                <li><a href="shop.html">Tops</a></li>
-                <li><a href="shop.html">Skirts</a></li>
-                <li><a href="shop.html">Heels</a></li>
-              </ul>
-            </div>
-            <div class="mega-menu-column">
-              <h4>Accessories</h4>
-              <ul>
-                <li><a href="shop.html">Watches</a></li>
-                <li><a href="shop.html">Bags</a></li>
-                <li><a href="shop.html">Jewelry</a></li>
-                <li><a href="shop.html">Sunglasses</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a href="shop.html?cat=home" class="nav-link">
-            <i class="fas fa-home"></i> Home & Garden <i class="fas fa-chevron-down"></i>
-          </a>
-          <div class="mega-menu">
-            <div class="mega-menu-column">
-              <h4>Furniture</h4>
-              <ul>
-                <li><a href="shop.html">Sofas</a></li>
-                <li><a href="shop.html">Beds</a></li>
-                <li><a href="shop.html">Tables</a></li>
-                <li><a href="shop.html">Chairs</a></li>
-              </ul>
-            </div>
-            <div class="mega-menu-column">
-              <h4>Kitchen</h4>
-              <ul>
-                <li><a href="shop.html">Cookware</a></li>
-                <li><a href="shop.html">Appliances</a></li>
-                <li><a href="shop.html">Utensils</a></li>
-                <li><a href="shop.html">Storage</a></li>
-              </ul>
-            </div>
-            <div class="mega-menu-column">
-              <h4>Decor</h4>
-              <ul>
-                <li><a href="shop.html">Lighting</a></li>
-                <li><a href="shop.html">Rugs</a></li>
-                <li><a href="shop.html">Wall Art</a></li>
-                <li><a href="shop.html">Plants</a></li>
-              </ul>
-            </div>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a href="shop.html?cat=beauty" class="nav-link">
-            <i class="fas fa-spa"></i> Beauty
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="shop.html?cat=sports" class="nav-link">
-            <i class="fas fa-futbol"></i> Sports
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="shop.html?sale=true" class="nav-link" style="color: var(--color-accent);">
-            <i class="fas fa-fire"></i> Hot Deals
-          </a>
-        </li>
+        <li><a href="shop.html" class="active" data-translate="all_categories">جميع الفئات</a></li>
+        <li><a href="shop.html?category=electronics" data-translate="electronics">الإلكترونيات</a></li>
+        <li><a href="shop.html?category=fashion" data-translate="fashion">الأزياء</a></li>
+        <li><a href="shop.html?category=home" data-translate="home_garden">المنزل والحديقة</a></li>
+        <li><a href="shop.html?category=beauty" data-translate="beauty">الجمال</a></li>
+        <li><a href="shop.html?category=sports" data-translate="sports">الرياضة</a></li>
+        <li><a href="shop.html?sort=sale" class="highlight" data-translate="hot_deals">عروض ساخنة</a></li>
       </ul>
     </div>
   </nav>
@@ -220,167 +109,118 @@
   <section class="hero">
     <div class="hero-slider">
       <!-- Slide 1 -->
-      <div class="hero-slide active">
+      <div class="hero-slide active"
+        style="background-image: url('https://images.unsplash.com/photo-1550009158-9ebf69173e03?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
         <div class="container">
           <div class="hero-content">
-            <span class="hero-badge">New Collection</span>
-            <h1 class="hero-title">Discover the <span>Future</span> of Tech</h1>
-            <p class="hero-desc">Explore our latest electronics collection with cutting-edge technology and unbeatable
-              prices.</p>
-            <div class="hero-buttons">
-              <a href="shop.html?cat=electronics" class="btn btn-primary btn-lg">Shop Now <i
-                  class="fas fa-arrow-right"></i></a>
-              <a href="about.html" class="btn btn-outline btn-lg" style="color: white; border-color: white;">Learn
-                More</a>
-            </div>
-          </div>
-          <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500" alt="Premium Headphones">
+            <span class="hero-tag" data-translate="new_collection">مجموعة جديدة</span>
+            <h1 data-translate="discover_future">اكتشف مستقبل التقنية</h1>
+            <p data-translate="hero_desc">استكشف أحدث مجموعة الإلكترونيات مع تقنية متطورة وأسعار لا تُقاوَم.</p>
+            <a href="shop.html" class="btn btn-primary" data-translate="shop_now">تسوق الآن</a>
           </div>
         </div>
       </div>
-
       <!-- Slide 2 -->
-      <div class="hero-slide">
+      <div class="hero-slide"
+        style="background-image: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
         <div class="container">
           <div class="hero-content">
-            <span class="hero-badge">Up to 50% Off</span>
-            <h1 class="hero-title">Fashion <span>Forward</span> Style</h1>
-            <p class="hero-desc">Refresh your wardrobe with the season's hottest trends at incredible discounts.</p>
-            <div class="hero-buttons">
-              <a href="shop.html?cat=fashion" class="btn btn-primary btn-lg">Explore Fashion <i
-                  class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500" alt="Smart Watch">
+            <span class="hero-tag" data-translate="new_collection">مجموعة جديدة</span>
+            <h1 data-translate="hero_title_2">أزياء عصرية وأنيقة</h1>
+            <p data-translate="hero_desc_2">جدد خزانة ملابسك بأحدث صيحات الموضة لهذا الموسم بخصومات مذهلة.</p>
+            <a href="shop.html?category=fashion" class="btn btn-primary" data-translate="explore_fashion">اكتشف
+              الأزياء</a>
           </div>
         </div>
       </div>
-
       <!-- Slide 3 -->
-      <div class="hero-slide">
+      <div class="hero-slide"
+        style="background-image: url('https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');">
         <div class="container">
           <div class="hero-content">
-            <span class="hero-badge">Limited Time</span>
-            <h1 class="hero-title">Home <span>Essentials</span> Sale</h1>
-            <p class="hero-desc">Transform your living space with our premium home collection. Quality meets
-              affordability.</p>
-            <div class="hero-buttons">
-              <a href="shop.html?cat=home" class="btn btn-primary btn-lg">Shop Home <i
-                  class="fas fa-arrow-right"></i></a>
-            </div>
-          </div>
-          <div class="hero-image">
-            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=500" alt="Modern Speaker">
+            <span class="hero-tag" data-translate="new_collection">مجموعة جديدة</span>
+            <h1 data-translate="hero_title_3">تخفيضات مستلزمات المنزل</h1>
+            <p data-translate="hero_desc_3">حول مساحة معيشتك مع مجموعتنا المنزلية الفاخرة. الجودة تلتقي بالتوفير.</p>
+            <a href="shop.html?category=home" class="btn btn-primary" data-translate="shop_home">تسوق للمنزل</a>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Slider Navigation -->
-    <div class="hero-arrows">
-      <button class="hero-arrow prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
-      <button class="hero-arrow next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+    <div class="hero-controls">
+      <button class="hero-arrow prev"><i class="fas fa-chevron-left"></i></button>
+      <button class="hero-arrow next"><i class="fas fa-chevron-right"></i></button>
     </div>
-    <div class="hero-nav">
-      <button class="hero-dot active" aria-label="Slide 1"></button>
-      <button class="hero-dot" aria-label="Slide 2"></button>
-      <button class="hero-dot" aria-label="Slide 3"></button>
+    <div class="hero-dots">
+      <span class="hero-dot active"></span>
+      <span class="hero-dot"></span>
+      <span class="hero-dot"></span>
     </div>
   </section>
 
-  <!-- Value Propositions -->
-  <section class="value-props">
+  <!-- Features Section -->
+  <section class="features">
     <div class="container">
-      <div class="value-prop">
-        <div class="value-prop-icon">
-          <i class="fas fa-truck"></i>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fas fa-shipping-fast"></i>
+          <h3 data-translate="fast_delivery">توصيل سريع</h3>
+          <p data-translate="fast_delivery_desc">شحن مجاني للطلبات فوق 50$</p>
         </div>
-        <div class="value-prop-content">
-          <h4>Fast Delivery</h4>
-          <p>Free shipping on orders over $50</p>
-        </div>
-      </div>
-      <div class="value-prop">
-        <div class="value-prop-icon">
+        <div class="feature-item">
           <i class="fas fa-shield-alt"></i>
+          <h3 data-translate="secure_payment">دفع آمن</h3>
+          <p data-translate="secure_payment_desc">معاملات محمية 100%</p>
         </div>
-        <div class="value-prop-content">
-          <h4>Secure Payment</h4>
-          <p>100% protected transactions</p>
-        </div>
-      </div>
-      <div class="value-prop">
-        <div class="value-prop-icon">
+        <div class="feature-item">
           <i class="fas fa-headset"></i>
+          <h3 data-translate="support_24">دعم على مدار الساعة</h3>
+          <p data-translate="support_24_desc">خدمة عملاء مخصصة</p>
         </div>
-        <div class="value-prop-content">
-          <h4>24/7 Support</h4>
-          <p>Dedicated customer service</p>
-        </div>
-      </div>
-      <div class="value-prop">
-        <div class="value-prop-icon">
+        <div class="feature-item">
           <i class="fas fa-undo"></i>
-        </div>
-        <div class="value-prop-content">
-          <h4>Easy Returns</h4>
-          <p>30-day return policy</p>
+          <h3 data-translate="easy_returns">إرجاع سهل</h3>
+          <p data-translate="easy_returns_desc">سياسة إرجاع 30 يوم</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Featured Categories -->
+  <!-- Categories Section -->
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Shop by Category</h2>
-        <a href="shop.html" class="section-link">View All <i class="fas fa-arrow-right"></i></a>
+        <h2 class="section-title" data-translate="shop_by_category">تسوق حسب الفئة</h2>
+        <a href="shop.html" class="section-link"><span data-translate="view_all">عرض الكل</span> <i
+            class="fas fa-arrow-right"></i></a>
       </div>
       <div class="categories-grid">
-        <a href="shop.html?cat=electronics" class="category-card">
-          <div class="category-card-icon">
-            <i class="fas fa-laptop"></i>
+        <a href="shop.html?category=electronics" class="category-card">
+          <img src="https://images.unsplash.com/photo-1498049860654-af1a5c5668ba?w=400" alt="Electronics">
+          <div class="category-content">
+            <h3 data-translate="electronics">الإلكترونيات</h3>
+            <p>120+ <span data-translate="products">منتج</span></p>
           </div>
-          <h4>Electronics</h4>
-          <p>2,500+ Products</p>
         </a>
-        <a href="shop.html?cat=fashion" class="category-card">
-          <div class="category-card-icon">
-            <i class="fas fa-tshirt"></i>
+        <a href="shop.html?category=fashion" class="category-card">
+          <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=400" alt="Fashion">
+          <div class="category-content">
+            <h3 data-translate="fashion">الأزياء</h3>
+            <p>350+ <span data-translate="products">منتج</span></p>
           </div>
-          <h4>Fashion</h4>
-          <p>5,800+ Products</p>
         </a>
-        <a href="shop.html?cat=home" class="category-card">
-          <div class="category-card-icon">
-            <i class="fas fa-couch"></i>
+        <a href="shop.html?category=home" class="category-card">
+          <img src="https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=400" alt="Home">
+          <div class="category-content">
+            <h3 data-translate="home_garden">المنزل والحديقة</h3>
+            <p>180+ <span data-translate="products">منتج</span></p>
           </div>
-          <h4>Home & Garden</h4>
-          <p>3,200+ Products</p>
         </a>
-        <a href="shop.html?cat=beauty" class="category-card">
-          <div class="category-card-icon">
-            <i class="fas fa-spa"></i>
+        <a href="shop.html?category=beauty" class="category-card">
+          <img src="https://images.unsplash.com/photo-1596462502278-27bfdd403348?w=400" alt="Beauty">
+          <div class="category-content">
+            <h3 data-translate="beauty">الجمال</h3>
+            <p>90+ <span data-translate="products">منتج</span></p>
           </div>
-          <h4>Beauty</h4>
-          <p>1,900+ Products</p>
-        </a>
-        <a href="shop.html?cat=sports" class="category-card">
-          <div class="category-card-icon">
-            <i class="fas fa-futbol"></i>
-          </div>
-          <h4>Sports</h4>
-          <p>2,100+ Products</p>
-        </a>
-        <a href="shop.html?cat=toys" class="category-card">
-          <div class="category-card-icon">
-            <i class="fas fa-gamepad"></i>
-          </div>
-          <h4>Toys & Games</h4>
-          <p>1,400+ Products</p>
         </a>
       </div>
     </div>
@@ -389,349 +229,29 @@
   <!-- Flash Sale Section -->
   <section class="flash-sale">
     <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">🔥 Flash Sale</h2>
-        <div class="countdown">
-          <div class="countdown-item">
-            <span data-days>00</span>
-            <small>Days</small>
-          </div>
-          <div class="countdown-item">
-            <span data-hours>23</span>
-            <small>Hours</small>
-          </div>
-          <div class="countdown-item">
-            <span data-minutes>59</span>
-            <small>Min</small>
-          </div>
-          <div class="countdown-item">
-            <span data-seconds>59</span>
-            <small>Sec</small>
+      <div class="flash-sale-content">
+        <div class="flash-sale-header">
+          <h2 data-translate="flash_sale">🔥 تخفيضات سريعة</h2>
+          <div class="countdown">
+            <div class="countdown-item">
+              <span class="countdown-value" data-days>02</span>
+              <span class="countdown-label" data-translate="days">أيام</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" data-hours>14</span>
+              <span class="countdown-label" data-translate="hours">ساعات</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" data-minutes>35</span>
+              <span class="countdown-label" data-translate="minutes">دقائق</span>
+            </div>
+            <div class="countdown-item">
+              <span class="countdown-value" data-seconds>12</span>
+              <span class="countdown-label" data-translate="seconds">ثواني</span>
+            </div>
           </div>
         </div>
-      </div>
-
-      <div class="products-slider">
-        <!-- Product 1 -->
-        <div class="product-card" data-id="flash-1">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400" alt="Wireless Headphones">
-            <span class="product-badge sale">-40%</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="flash-1"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Electronics</span>
-            <h3 class="product-title"><a href="product.html?id=flash-1">Premium Wireless Headphones</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-              <span>(128)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$89.99</span>
-              <span class="original">$149.99</span>
-              <span class="discount">-40%</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="product-card" data-id="flash-2">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400" alt="Smart Watch">
-            <span class="product-badge sale">-35%</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="flash-2"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Electronics</span>
-            <h3 class="product-title"><a href="product.html?id=flash-2">Smart Watch Pro Series 5</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-              <span>(256)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$199.99</span>
-              <span class="original">$299.99</span>
-              <span class="discount">-35%</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="product-card" data-id="flash-3">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?w=400" alt="Running Shoes">
-            <span class="product-badge sale">-50%</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="flash-3"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Sports</span>
-            <h3 class="product-title"><a href="product.html?id=flash-3">Ultra Boost Running Shoes</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="far fa-star"></i>
-              </div>
-              <span>(89)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$79.99</span>
-              <span class="original">$159.99</span>
-              <span class="discount">-50%</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-
-        <!-- Product 4 -->
-        <div class="product-card" data-id="flash-4">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?w=400" alt="Perfume">
-            <span class="product-badge sale">-30%</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="flash-4"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Beauty</span>
-            <h3 class="product-title"><a href="product.html?id=flash-4">Luxury Eau de Parfum</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-              <span>(67)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$69.99</span>
-              <span class="original">$99.99</span>
-              <span class="discount">-30%</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-
-        <!-- Product 5 -->
-        <div class="product-card" data-id="flash-5">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400" alt="Portable Speaker">
-            <span class="product-badge sale">-45%</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="flash-5"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Electronics</span>
-            <h3 class="product-title"><a href="product.html?id=flash-5">Portable Bluetooth Speaker</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-              <span>(312)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$54.99</span>
-              <span class="original">$99.99</span>
-              <span class="discount">-45%</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- New Arrivals -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">New Arrivals</h2>
-        <a href="shop.html?sort=newest" class="section-link">View All <i class="fas fa-arrow-right"></i></a>
-      </div>
-
-      <div class="products-slider">
-        <!-- Product 6 -->
-        <div class="product-card" data-id="new-1">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400" alt="Sneakers">
-            <span class="product-badge new">New</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="new-1"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Fashion</span>
-            <h3 class="product-title"><a href="product.html?id=new-1">Air Max Sneakers Red</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-              <span>(45)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$129.99</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-
-        <!-- Product 7 -->
-        <div class="product-card" data-id="new-2">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1600185365926-3a2ce3cdb9eb?w=400" alt="Leather Bag">
-            <span class="product-badge new">New</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="new-2"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Fashion</span>
-            <h3 class="product-title"><a href="product.html?id=new-2">Premium Leather Backpack</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="far fa-star"></i>
-              </div>
-              <span>(28)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$189.99</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-
-        <!-- Product 8 -->
-        <div class="product-card" data-id="new-3">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=400" alt="Skincare Set">
-            <span class="product-badge new">New</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="new-3"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Beauty</span>
-            <h3 class="product-title"><a href="product.html?id=new-3">Complete Skincare Kit</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-              </div>
-              <span>(92)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$79.99</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-
-        <!-- Product 9 -->
-        <div class="product-card" data-id="new-4">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1491553895911-0055uj3e9d0?w=400" alt="Coffee Maker">
-            <span class="product-badge new">New</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="new-4"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Home</span>
-            <h3 class="product-title"><a href="product.html?id=new-4">Smart Coffee Machine</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="fas fa-star"></i>
-              </div>
-              <span>(156)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$299.99</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-
-        <!-- Product 10 -->
-        <div class="product-card" data-id="new-5">
-          <div class="product-card-image">
-            <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400" alt="Sunglasses">
-            <span class="product-badge new">New</span>
-            <div class="product-actions">
-              <button class="product-action-btn wishlist-btn" data-product-id="new-5"><i
-                  class="far fa-heart"></i></button>
-              <button class="product-action-btn"><i class="fas fa-eye"></i></button>
-            </div>
-          </div>
-          <div class="product-card-content">
-            <span class="product-category">Fashion</span>
-            <h3 class="product-title"><a href="product.html?id=new-5">Designer Sunglasses</a></h3>
-            <div class="product-rating">
-              <div class="product-stars">
-                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                  class="fas fa-star"></i><i class="far fa-star"></i>
-              </div>
-              <span>(34)</span>
-            </div>
-            <div class="product-price">
-              <span class="current">$149.99</span>
-            </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Promotional Banner -->
-  <section class="section">
-    <div class="container">
-      <div class="promo-banner">
-        <div class="container">
-          <div class="promo-content">
-            <h2>Summer Collection Up to 70% Off</h2>
-            <p>Don't miss out on our biggest sale of the season. Limited time offer on selected items.</p>
-            <a href="shop.html?sale=summer" class="btn btn-secondary btn-lg">Shop the Sale <i
-                class="fas fa-arrow-right"></i></a>
-          </div>
-          <div class="promo-image">
-            <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=500" alt="Summer Sale">
-          </div>
-        </div>
+        <a href="shop.html?sort=sale" class="btn btn-white" data-translate="shop_sale">تسوق العروض</a>
       </div>
     </div>
   </section>
@@ -740,12 +260,13 @@
   <section class="section" style="background: var(--color-gray-50);">
     <div class="container">
       <div class="section-header">
-        <h2 class="section-title">Best Sellers</h2>
-        <a href="shop.html?sort=popular" class="section-link">View All <i class="fas fa-arrow-right"></i></a>
+        <h2 class="section-title" data-translate="best_sellers">الأكثر مبيعاً</h2>
+        <a href="shop.html?sort=popular" class="section-link"><span data-translate="view_all">عرض الكل</span> <i
+            class="fas fa-arrow-right"></i></a>
       </div>
 
       <div class="products-grid">
-        <!-- Best Seller 1 -->
+        <!-- Product 1 -->
         <div class="product-card" data-id="best-1">
           <div class="product-card-image">
             <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?w=400" alt="Smart Watch">
@@ -756,7 +277,7 @@
             </div>
           </div>
           <div class="product-card-content">
-            <span class="product-category">Electronics</span>
+            <span class="product-category" data-translate="electronics">Electronics</span>
             <h3 class="product-title"><a href="product.html?id=best-1">Smart Fitness Watch</a></h3>
             <div class="product-rating">
               <div class="product-stars">
@@ -766,14 +287,15 @@
               <span>(524)</span>
             </div>
             <div class="product-price">
-              <span class="current">$179.99</span>
-              <span class="original">$219.99</span>
+              <span class="current" data-price-usd="179.99">$179.99</span>
+              <span class="original" data-price-usd="219.99">$219.99</span>
             </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> <span data-translate="add_to_cart">أضف
+                للسلة</span></button>
           </div>
         </div>
 
-        <!-- Best Seller 2 -->
+        <!-- Product 2 -->
         <div class="product-card" data-id="best-2">
           <div class="product-card-image">
             <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=400" alt="Sneakers">
@@ -784,7 +306,7 @@
             </div>
           </div>
           <div class="product-card-content">
-            <span class="product-category">Fashion</span>
+            <span class="product-category" data-translate="fashion">Fashion</span>
             <h3 class="product-title"><a href="product.html?id=best-2">Classic White Sneakers</a></h3>
             <div class="product-rating">
               <div class="product-stars">
@@ -794,13 +316,14 @@
               <span>(387)</span>
             </div>
             <div class="product-price">
-              <span class="current">$99.99</span>
+              <span class="current" data-price-usd="99.99">$99.99</span>
             </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> <span data-translate="add_to_cart">أضف
+                للسلة</span></button>
           </div>
         </div>
 
-        <!-- Best Seller 3 -->
+        <!-- Product 3 -->
         <div class="product-card" data-id="best-3">
           <div class="product-card-image">
             <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400" alt="Camera">
@@ -811,7 +334,7 @@
             </div>
           </div>
           <div class="product-card-content">
-            <span class="product-category">Electronics</span>
+            <span class="product-category" data-translate="electronics">Electronics</span>
             <h3 class="product-title"><a href="product.html?id=best-3">Instant Film Camera</a></h3>
             <div class="product-rating">
               <div class="product-stars">
@@ -821,14 +344,15 @@
               <span>(245)</span>
             </div>
             <div class="product-price">
-              <span class="current">$89.99</span>
-              <span class="original">$119.99</span>
+              <span class="current" data-price-usd="89.99">$89.99</span>
+              <span class="original" data-price-usd="119.99">$119.99</span>
             </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> <span data-translate="add_to_cart">أضف
+                للسلة</span></button>
           </div>
         </div>
 
-        <!-- Best Seller 4 -->
+        <!-- Product 4 -->
         <div class="product-card" data-id="best-4">
           <div class="product-card-image">
             <img src="https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400" alt="Sunglasses">
@@ -839,7 +363,7 @@
             </div>
           </div>
           <div class="product-card-content">
-            <span class="product-category">Fashion</span>
+            <span class="product-category" data-translate="fashion">Fashion</span>
             <h3 class="product-title"><a href="product.html?id=best-4">Aviator Sunglasses</a></h3>
             <div class="product-rating">
               <div class="product-stars">
@@ -849,9 +373,10 @@
               <span>(198)</span>
             </div>
             <div class="product-price">
-              <span class="current">$59.99</span>
+              <span class="current" data-price-usd="59.99">$59.99</span>
             </div>
-            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> Add to Cart</button>
+            <button class="product-add-cart"><i class="fas fa-shopping-cart"></i> <span data-translate="add_to_cart">أضف
+                للسلة</span></button>
           </div>
         </div>
       </div>
@@ -865,10 +390,9 @@
         <div class="footer-about">
           <a href="index.html" class="logo">
             <i class="fas fa-shopping-bag"></i>
-            Shop<span>Hub</span>
+            <span data-translate="site_name">ShopHub</span>
           </a>
-          <p>Your one-stop destination for premium products across electronics, fashion, home goods, and more. We
-            deliver quality and value to your doorstep.</p>
+          <p data-translate="your_one_stop">وجهتك الشاملة للمنتجات الفاخرة.</p>
           <div class="footer-social">
             <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
             <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
@@ -878,37 +402,41 @@
         </div>
 
         <div class="footer-column">
-          <h4>Customer Service</h4>
+          <h4 data-translate="customer_service">خدمة العملاء</h4>
           <ul>
-            <li><a href="contact.html"><i class="fas fa-headset"></i> Help Center</a></li>
-            <li><a href="faq.html"><i class="fas fa-undo"></i> Returns & Refunds</a></li>
-            <li><a href="faq.html"><i class="fas fa-truck"></i> Shipping Info</a></li>
-            <li><a href="faq.html"><i class="fas fa-credit-card"></i> Payment Methods</a></li>
+            <li><a href="contact.html" data-translate="help_center"><i class="fas fa-headset"></i> مركز المساعدة</a>
+            </li>
+            <li><a href="faq.html" data-translate="returns_refunds"><i class="fas fa-undo"></i> الإرجاع والاسترداد</a>
+            </li>
+            <li><a href="faq.html" data-translate="shipping_info"><i class="fas fa-truck"></i> معلومات الشحن</a></li>
+            <li><a href="faq.html" data-translate="payment_methods"><i class="fas fa-credit-card"></i> طرق الدفع</a>
+            </li>
           </ul>
         </div>
 
         <div class="footer-column">
-          <h4>Quick Links</h4>
+          <h4 data-translate="quick_links">روابط سريعة</h4>
           <ul>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="contact.html">Contact Us</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
+            <li><a href="about.html" data-translate="about_us">من نحن</a></li>
+            <li><a href="contact.html" data-translate="contact_us">اتصل بنا</a></li>
+            <li><a href="#" data-translate="privacy_policy">سياسة الخصوصية</a></li>
+            <li><a href="#" data-translate="terms_service">شروط الخدمة</a></li>
           </ul>
         </div>
 
         <div class="footer-column footer-newsletter">
-          <h4>Newsletter</h4>
-          <p>Subscribe to get special offers, free giveaways, and exclusive deals.</p>
+          <h4 data-translate="newsletter">النشرة البريدية</h4>
+          <p data-translate="newsletter_desc">اشترك للحصول على عروض حصرية.</p>
           <form class="newsletter-form">
-            <input type="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
+            <input type="email" placeholder="أدخل بريدك الإلكتروني" data-translate-placeholder="enter_email" required>
+            <button type="submit" data-translate="subscribe">اشترك</button>
           </form>
         </div>
       </div>
 
       <div class="footer-bottom">
-        <p class="footer-copyright">&copy; 2024 ShopHub. All rights reserved.</p>
+        <p class="footer-copyright">&copy; 2024 ShopHub. <span data-translate="all_rights">جميع الحقوق محفوظة.</span>
+        </p>
         <div class="footer-payments">
           <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Visa_Inc._logo.svg" alt="Visa"
             style="height: 20px; filter: brightness(0) invert(1);">
